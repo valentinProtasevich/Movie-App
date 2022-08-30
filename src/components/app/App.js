@@ -1,8 +1,9 @@
+import AppHeader from "../appHeader/AppHeader";
 
 function App() {
   return (
-    <div className="App">
-      Hello
+    <div className="app">
+      <AppHeader/>
     </div>
   );
 }
