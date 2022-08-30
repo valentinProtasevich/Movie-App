@@ -1,0 +1,60 @@
+@import '../../../style/variables.scss';
+
+.homePage {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__searchBlock {
+    height: 36rem;
+    padding: 5rem;
+    padding-right: 7.5rem;
+    background-color: $darkBlue;
+    background-image: url('../../../resources/img/white-walker.jpg');
+    h1 {
+      font-weight: 700;
+      font-size: 4.8rem;
+      color: #FFFFFF;
+    }
+    h2 {
+      font-weight: 600;
+      font-size: 3.2rem;
+      color: #FFFFFF;
+    }
+    form {
+      margin-top: 10rem;
+    }
+    &_input {
+      width: 100%;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 3rem;
+      padding-right: 15rem;
+      border-radius: 3rem;
+      border: 0;
+      font-weight: 400;
+      font-size: 1.8rem;
+    }
+    &_submit {
+      position: absolute;
+      right: 7.5rem;
+      width: 12rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+      border: 0;
+      border-radius: 3rem;
+      font-weight: 400;
+      font-size: 1.8rem;
+      background: linear-gradient(to right, $lightGreen, $lightBlue);
+      color: #FFFFFF;
+      &:hover {
+        cursor: pointer;
+      }
+      &:disabled {
+        cursor: default;
+      }
+    }
+  }
+}
