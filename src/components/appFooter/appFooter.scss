@@ -1,0 +1,22 @@
+@import '../../style/variables.scss';
+
+.footer {
+  &__flex {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2.5rem;
+    padding-bottom: 2.4rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border-top: 1px solid #595959;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    background-color: $darkBlue;
+    color: #ffffff;
+  }
+  &__socialContainer {
+    display: flex;
+    column-gap: 1.6rem;
+  }
+}
