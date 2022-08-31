@@ -24,6 +24,9 @@
     line-height: 3.3rem;
   }
   &__navigation {
+    &_liMenu {
+      display: none;
+    }
     ul{
       display: flex;
       justify-content: space-between;

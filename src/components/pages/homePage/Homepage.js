@@ -17,9 +17,17 @@ const Homepage = () => {
   const onSubmit = dataSearch => console.log(dataSearch);
 
   const {data: popularity = {}} = useGetPopularityQuery();
-  const {data: mostPopularity = {}, error} = useGetMostPopularQuery();
+  const {data: mostPopularity = {}} = useGetMostPopularQuery();
   let popularityResults = popularity.results ?? [];
   let mostPopularityResults = mostPopularity.results ?? [];
+
+  const getSlides = () => {
+    if (window.screen.width < 768) {
+      return 1
+    } else {
+      return 5
+    }
+  }
   
   return (
     <>
@@ -44,7 +52,7 @@ const Homepage = () => {
         </section>
 
         <section className='homePage__filmsSlider'>
-          <SimpleSlider title='Что популярно'>
+          <SimpleSlider title='Что популярно' slides={getSlides()}>
             {popularityResults.map(item => (
               <div key={item.id} className='homePage__filmsSlider_cards'>
                 <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} />

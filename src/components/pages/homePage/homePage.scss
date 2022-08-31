@@ -154,3 +154,70 @@
   }
 }
 
+@media (max-width: 767px) {
+  .homePage {
+    &__container {
+      padding-top: 8rem;
+    }
+    &__searchBlock {
+      height: 25rem;
+      padding: 2.4rem;
+      padding-top: 2rem;
+      h1 {
+        font-size: 2.8rem;
+        line-height: 4.2rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      form {
+        margin-top: 3rem;
+      }
+      &_input {
+        font-size: 1.4rem;
+        padding-left: 1rem;
+        padding-right: 6rem;
+      }
+      &_submit {
+        right: 2.4rem;
+        width: 6rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1.4rem;
+        border-radius: 2rem;
+      }
+    }
+    &__filmsSlider {
+      padding: 2.6rem;
+      padding-top: 2rem;
+      h2 {
+        font-size: 2.2rem;
+      }
+    }
+    &__mostPopular {
+      padding: 2.4rem;
+      padding-top: 0;
+      padding-bottom: 0;
+      h2 {
+        font-size: 2.2rem;
+      }
+      &_grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    &__about {
+      padding: 2.4rem;
+      padding-top: 0;
+      margin-bottom: 1rem;
+      h2 {
+        margin-top: 0;
+        font-size: 2.2rem;
+      }
+      p {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
