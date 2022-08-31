@@ -6,7 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import SimpleSlider from '../../simpleSlider/SimpleSlider';
 import { useGetPopularityQuery, useGetMostPopularQuery } from '../../api/moviesApi';
 import getColorRating from '../../../helpers/getColorRating';
-import getImg from '../../../helpers/getImg';
+import noImg from '../../../resources/img/noImg.jpg';
 
 import './homePage.scss';
 
@@ -65,7 +65,7 @@ const Homepage = () => {
             {popularityLoading && <h1>Идет загрузка...</h1>}
             {popularityResults.map(item => (
               <div key={item.id} className='homePage__filmsSlider_cards'>
-                <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} />
+                <img src={item.poster_path ? 'https://image.tmdb.org/t/p/w500/'+ item.poster_path : noImg} alt={item.title} />
                   <div className='homePage__filmsSlider_progress'>
                     <CircularProgressbar 
                       value={item.vote_average * 10} 
@@ -85,7 +85,7 @@ const Homepage = () => {
             {MostPopularityLoading && <h1>Идет загрузка...</h1>}
             {mostPopularityResults.map(item => (
               <div key={item.id} className='homePage__mostPopular_cards'>
-                {getImg(item.poster_path, item.title)}
+                <img src={item.poster_path ? 'https://image.tmdb.org/t/p/w500/'+ item.poster_path : noImg} alt={item.title} />
                 <a href="">{item.title}</a>
               </div>
             ))}
