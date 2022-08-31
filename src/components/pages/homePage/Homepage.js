@@ -16,8 +16,16 @@ const Homepage = () => {
   });
   const onSubmit = dataSearch => console.log(dataSearch);
 
-  const {data: popularity = {}} = useGetPopularityQuery();
-  const {data: mostPopularity = {}} = useGetMostPopularQuery();
+  const {
+    data: popularity = {}, 
+    isLoading: popularityLoading, 
+    isError: popularityError
+  } = useGetPopularityQuery();
+  const {
+    data: mostPopularity = {}, 
+    isLoading: MostPopularityLoading, 
+    isError: MostPopularityError
+  } = useGetMostPopularQuery();
   let popularityResults = popularity.results ?? [];
   let mostPopularityResults = mostPopularity.results ?? [];
 
@@ -53,6 +61,8 @@ const Homepage = () => {
 
         <section className='homePage__filmsSlider'>
           <SimpleSlider title='Что популярно' slides={getSlides()}>
+            {popularityError && <h1>Произошла ошибка при загрузке</h1>}
+            {popularityLoading && <h1>Идет загрузка...</h1>}
             {popularityResults.map(item => (
               <div key={item.id} className='homePage__filmsSlider_cards'>
                 <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt={item.title} />
@@ -71,6 +81,8 @@ const Homepage = () => {
         <section className='homePage__mostPopular'>
           <h2>Рейтинг 100%</h2>
           <div className='homePage__mostPopular_grid'>
+            {MostPopularityError && <h1>Произошла ошибка при загрузке</h1>}
+            {MostPopularityLoading && <h1>Идет загрузка...</h1>}
             {mostPopularityResults.map(item => (
               <div key={item.id} className='homePage__mostPopular_cards'>
                 {getImg(item.poster_path, item.title)}
