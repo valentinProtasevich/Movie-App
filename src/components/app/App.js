@@ -13,7 +13,7 @@ function App() {
           {/* <Route path='/' element={<Homepage/>} /> */}
         </Routes>
       </main>
-      {/* <AppFooter/> */}
+      <AppFooter/>
     </div>
   );
 }
