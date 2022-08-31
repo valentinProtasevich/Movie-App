@@ -8,8 +8,8 @@ const SimpleSlider = (props) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 7
+    slidesToShow: 5,
+    slidesToScroll: 5
   };
 
   return (

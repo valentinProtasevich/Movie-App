@@ -10,10 +10,10 @@ function App() {
       <AppHeader/>
       <main>
         <Routes>
-          <Route path='/' element={<Homepage/>} />
+          {/* <Route path='/' element={<Homepage/>} /> */}
         </Routes>
       </main>
-      <AppFooter/>
+      {/* <AppFooter/> */}
     </div>
   );
 }
