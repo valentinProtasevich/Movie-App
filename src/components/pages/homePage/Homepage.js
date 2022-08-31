@@ -4,8 +4,9 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import SimpleSlider from '../../simpleSlider/SimpleSlider';
-import { useGetPopularityQuery } from '../../api/moviesApi';
+import { useGetPopularityQuery, useGetMostPopularQuery } from '../../api/moviesApi';
 import getColorRating from '../../../helpers/getColorRating';
+import getImg from '../../../helpers/getImg';
 
 import './homePage.scss';
 
@@ -16,7 +17,9 @@ const Homepage = () => {
   const onSubmit = dataSearch => console.log(dataSearch);
 
   const {data: popularity = {}} = useGetPopularityQuery();
+  const {data: mostPopularity = {}, error} = useGetMostPopularQuery();
   let popularityResults = popularity.results ?? [];
+  let mostPopularityResults = mostPopularity.results ?? [];
   
   return (
     <>
@@ -54,6 +57,17 @@ const Homepage = () => {
               </div>
             ))}
           </SimpleSlider>
+        </section>
+        <section className='homePage__mostPopular'>
+          <h2>Рейтинг 100%</h2>
+          <div className='homePage__mostPopular_grid'>
+            {mostPopularityResults.map(item => (
+              <div key={item.id} className='homePage__mostPopular_cards'>
+                {getImg(item.poster_path, item.title)}
+                <a href="">{item.title}</a>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </>

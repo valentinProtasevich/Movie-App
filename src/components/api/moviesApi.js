@@ -8,8 +8,11 @@ export const moviesApi = createApi({
   endpoints: (build) => ({
     getPopularity: build.query({
       query: () => `/discover/movie?sort_by=popularity.desc&${API_KEY}&language=ru`
+    }),
+    getMostPopular: build.query({
+      query: () => `/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&${API_KEY}&language=ru`
     })
   })
 });
 
-export const {useGetPopularityQuery} = moviesApi;
+export const {useGetPopularityQuery, useGetMostPopularQuery} = moviesApi;
