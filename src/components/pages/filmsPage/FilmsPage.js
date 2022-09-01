@@ -11,6 +11,8 @@ import noImg from '../../../resources/img/noImg.jpg';
 import './filmsPage.scss';
 
 const FilmsPage = () => {
+  window.scrollTo(0, 0);
+
   const [genreId, setGenreId] = useState(28);
   const [page, setPage] = useState(1);
 
@@ -40,6 +42,11 @@ const FilmsPage = () => {
     }
   })
 
+  const activateMenu = () => {
+    document.querySelector('.filmsPage__categories').classList.toggle('active');
+    document.querySelector('.filmsPage__burgerBtn').classList.toggle('active');
+  }
+
   return (
     <>
       <Helmet>
@@ -64,13 +71,15 @@ const FilmsPage = () => {
                   if (genreId !== e.target.id) {
                     setPage(1);
                   }
-                  console.log(e.target);
                   e.target.classList.add('genre__active');
+                  activateMenu();
                 }}>
               {item.name[0].toUpperCase() + item.name.slice(1)}</li>
             ))}
           </ul>
         </section>
+
+        <button className='filmsPage__burgerBtn' onClick={activateMenu}></button>
 
         <section className="filmsPage__filmsContainer">
           {filmsError && <h1>Произошла ошибка при загрузке</h1>}
@@ -93,9 +102,21 @@ const FilmsPage = () => {
             ))}
           </div>
           <div className="filmsPage__btnContainer">
-              <button className="filmsPage__btnContainer_prevPage" onClick={() => setPage(page - 1)}>Предыдущая страница</button>
+              <button 
+                className="filmsPage__btnContainer_prevPage" 
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setPage(page - 1);
+                }}>
+              Предыдущая страница</button>
               <button className="filmsPage__btnContainer_currentPage">{page}</button>
-              <button className="filmsPage__btnContainer_nextPage" onClick={() => setPage(page + 1)}>Следующая страница</button>
+              <button 
+                className="filmsPage__btnContainer_nextPage" 
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setPage(page + 1);
+                }}>
+              Следующая страница</button>
           </div>
         </section>
       </div>

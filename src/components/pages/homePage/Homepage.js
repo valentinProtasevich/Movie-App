@@ -12,6 +12,8 @@ import noImg from '../../../resources/img/noImg.jpg';
 import './homePage.scss';
 
 const Homepage = () => {
+  window.scrollTo(0, 0);
+  
   const { register, formState: { isValid }, handleSubmit } = useForm({
     mode: 'onChange'
   });
