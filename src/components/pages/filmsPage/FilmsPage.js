@@ -7,6 +7,7 @@ import { useGetGenresQuery, useGetFilmsWithGenreQuery } from "../../api/moviesAp
 import getColorRating from "../../../helpers/getColorRating";
 import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
+import createDefaultImg from "../../../helpers/createDefaultImg";
 
 import './filmsPage.scss';
 
@@ -88,7 +89,13 @@ const FilmsPage = () => {
           <div className="filmsPage__grid">
             {filmsResults.map(item => (
               <div key={item.id} className='filmsPage__filmCard'>
-                <img src={item.poster_path ? 'https://image.tmdb.org/t/p/w500/'+ item.poster_path : noImg} alt={item.title} />
+                <img 
+                  src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
+                  alt={item.title} 
+                  onError={(e) => {
+                  createDefaultImg(e.target);
+                  e.target.style.display = 'none';
+                }}/>
                 <div className='filmsPage__filmCard_progress'>
                     <CircularProgressbar 
                       value={item.vote_average * 10} 

@@ -1,5 +1,10 @@
 @import '../../../style/variables.scss';
 
+.defaultImg {
+  width: 100%;
+  content: url(../../../resources/img/noImg.jpg);
+}
+
 .filmsPage {
   &__container {
     display: flex;
@@ -64,6 +69,7 @@
     border-radius: 1.2rem;
     box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
     img {
+      background-image: url('../../../resources/img/noImg.jpg');
       width: 100%;
       border-top-left-radius: 1.2rem;
       border-top-right-radius: 1.2rem;

@@ -1,5 +1,10 @@
 @import '../../../style/variables.scss';
 
+.defaultImg {
+  width: 100%;
+  content: url(../../../resources/img/noImg.jpg);
+}
+
 .homePage {
   &__container {
     display: flex;
