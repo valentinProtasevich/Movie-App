@@ -8,7 +8,7 @@
   &__searchBlock {
     height: 36rem;
     padding: 5rem;
-    padding-right: 7.4rem;
+    padding-right: 5rem;
     background-color: $darkBlue;
     background-image: url('../../../resources/img/white-walker.jpg');
     h1 {
@@ -37,7 +37,7 @@
     }
     &_submit {
       position: absolute;
-      right: 7.4rem;
+      right: 5rem;
       width: 12rem;
       padding-top: 1rem;
       padding-bottom: 1rem;
@@ -66,7 +66,7 @@
     row-gap: 2rem;
     padding-top: 3rem;
     padding-left: 5rem;
-    padding-right: 7.4rem;
+    padding-right: 5em;
     h2 {
       font-weight: 600;
       font-size: 2.4rem;
@@ -109,7 +109,7 @@
   &__mostPopular {
     padding-top: 2rem;
     padding-left: 5rem;
-    padding-right: 7.4rem;
+    padding-right: 5rem;
     h2 {
       font-weight: 600;
       font-size: 2.4rem;
@@ -137,7 +137,7 @@
   }
   &__about {
     padding-left: 5rem;
-    padding-right: 7.4rem;
+    padding-right: 5rem;
     margin-bottom: 4rem;
     h2 {
       margin-top: 1.5rem;
@@ -148,6 +148,33 @@
     p {
       font-weight: 400;
       font-size: 1.6rem;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .homePage {
+    &__searchBlock {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      &_submit {
+        right: 2rem;
+      }
+    }
+    &__filmsSlider {
+      margin-left: 2rem;
+      margin-right: 2em;
+      padding-left: 2rem;
+      padding-right: 2em;
+    }
+    &__mostPopular {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    &__about {
+      margin-top: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
   }
 }

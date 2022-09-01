@@ -21,6 +21,15 @@
   }
 }
 
+@media (max-width: 1023px) {
+  .footer {
+    &__flex {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
 @media (max-width: 767px) {
   .footer {
     &__flex {

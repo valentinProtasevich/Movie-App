@@ -51,6 +51,15 @@
   }
 }
 
+@media (max-width: 1023px) {
+  .app {
+    &__header {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
 @media (max-width: 767px) {
   .app {
     &__header {
