@@ -4,9 +4,10 @@ import { Route, Routes } from "react-router-dom";
 import AppHeader from "../appHeader/AppHeader";
 import AppFooter from "../appFooter/AppFooter";
 import Spinner from '../spinner/Spinner';
-//import {Homepage} from '../pages';
+
 
 const Homepage = lazy(() => import('../pages/homePage/Homepage'));
+const FilmsPage = lazy(() => import('../pages/filmsPage/FilmsPage'));
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Suspense fallback={<Spinner/>}>
           <Routes>
             <Route path='/' element={<Homepage/>} />
+            <Route path='/films' element={<FilmsPage/>} />
           </Routes>
         </Suspense>
       </main>
