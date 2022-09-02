@@ -3,33 +3,33 @@ import { Helmet } from "react-helmet";
 import { CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
-import { useGetFilmsGenresQuery, useGetFilmsWithGenreQuery } from "../../api/moviesApi";
+import { useGetSeriesGenresQuery, useGetSeriesWithGenreQuery } from "../../api/moviesApi";
 import getColorRating from "../../../helpers/getColorRating";
 import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
 
-import './filmsPage.scss';
+import './seriesPage.scss';
 
-const FilmsPage = () => {
+const SeriesPage = () => {
   window.scrollTo(0, 0);
 
-  const [genreId, setGenreId] = useState(28);
+  const [genreId, setGenreId] = useState(10759);
   const [page, setPage] = useState(1);
 
   const {
     data: genresObj = {},
     isFetching: genresFetching, 
     isError: genresError
-  } = useGetFilmsGenresQuery();
+  } = useGetSeriesGenresQuery();
   let genres = genresObj.genres ?? [];
 
   const {
-    data: filmsObj ={},
-    isFetching: filmsFetching, 
-    isError: filmsError
-  } = useGetFilmsWithGenreQuery({genreId, page});
-  let filmsResults = filmsObj.results ?? [];
+    data: seriesObj ={},
+    isFetching: seriesFetching, 
+    isError: seriesError
+  } = useGetSeriesWithGenreQuery({genreId, page});
+  let seriesResults = seriesObj.results ?? [];
 
   useEffect(() => {
     document.querySelectorAll('li').forEach((element) => {
@@ -37,15 +37,15 @@ const FilmsPage = () => {
     });
     document.getElementById(`${genreId}`)?.classList.add('genre__active');
     if (page <= 1) {
-      document.querySelector('.filmsPage__btnContainer_prevPage').setAttribute('disabled', true);
+      document.querySelector('.seriesPage__btnContainer_prevPage').setAttribute('disabled', true);
     } else {
-      document.querySelector('.filmsPage__btnContainer_prevPage').removeAttribute('disabled');
+      document.querySelector('.seriesPage__btnContainer_prevPage').removeAttribute('disabled');
     }
   })
 
   const activateMenu = () => {
-    document.querySelector('.filmsPage__categories').classList.toggle('active');
-    document.querySelector('.filmsPage__burgerBtn').classList.toggle('active');
+    document.querySelector('.seriesPage__categories').classList.toggle('active');
+    document.querySelector('.seriesPage__burgerBtn').classList.toggle('active');
   }
 
   return (
@@ -55,10 +55,10 @@ const FilmsPage = () => {
             name="description"
             content="Movies information portal"
           />
-        <title>Movies: films</title>
+        <title>Movies: TV series</title>
       </Helmet>
-      <div className="filmsPage__container">
-        <section className="filmsPage__categories">
+      <div className="seriesPage__container">
+        <section className="seriesPage__categories">
           <h2>Жанры</h2>
           <ul>
             {genresError && <h1>Произошла ошибка при загрузке</h1>}
@@ -80,45 +80,45 @@ const FilmsPage = () => {
           </ul>
         </section>
 
-        <button className='filmsPage__burgerBtn' onClick={activateMenu}></button>
+        <button className='seriesPage__burgerBtn' onClick={activateMenu}></button>
 
-        <section className="filmsPage__filmsContainer">
-          {filmsError && <h1>Произошла ошибка при загрузке</h1>}
-          {filmsFetching && <Spinner/>}
-          <h1>Популярные фильмы</h1>
-          <div className="filmsPage__grid">
-            {filmsResults.map(item => (
-              <div key={item.id} className='filmsPage__filmCard'>
+        <section className="seriesPage__seriesContainer">
+          {seriesError && <h1>Произошла ошибка при загрузке</h1>}
+          {seriesFetching && <Spinner/>}
+          <h1>Популярные сериалы</h1>
+          <div className="seriesPage__grid">
+            {seriesResults.map(item => (
+              <div key={item.id} className='seriesPage__serieCard'>
                 <img 
                   src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
-                  alt={item.title} 
+                  alt={item.name} 
                   onError={(e) => {
                   createDefaultImg(e.target);
                   e.target.style.display = 'none';
                 }}/>
-                <div className='filmsPage__filmCard_progress'>
+                <div className='seriesPage__serieCard_progress'>
                     <CircularProgressbar 
                       value={item.vote_average * 10} 
                       text={item.vote_average * 10 + '%'}
                       background={true}
                       styles={getColorRating(item.vote_average)}/>
                 </div>
-                <a href="">{item.title}</a>
-                <p>{item.release_date}</p>
+                <a href="">{item.name}</a>
+                <p>{item.first_air_date}</p>
               </div>
             ))}
           </div>
-          <div className="filmsPage__btnContainer">
+          <div className="seriesPage__btnContainer">
               <button 
-                className="filmsPage__btnContainer_prevPage" 
+                className="seriesPage__btnContainer_prevPage" 
                 onClick={() => {
                   window.scrollTo(0, 0);
                   setPage(page - 1);
                 }}>
               Предыдущая страница</button>
-              <button className="filmsPage__btnContainer_currentPage">{page}</button>
+              <button className="seriesPage__btnContainer_currentPage">{page}</button>
               <button 
-                className="filmsPage__btnContainer_nextPage" 
+                className="seriesPage__btnContainer_nextPage" 
                 onClick={() => {
                   window.scrollTo(0, 0);
                   setPage(page + 1);
@@ -131,4 +131,4 @@ const FilmsPage = () => {
   )
 }
 
-export default FilmsPage;
+export default SeriesPage;

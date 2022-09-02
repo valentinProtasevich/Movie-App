@@ -12,13 +12,24 @@ export const moviesApi = createApi({
     getMostPopular: build.query({
       query: () => `/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&${API_KEY}&language=ru`
     }),
-    getGenres: build.query({
+    getFilmsGenres: build.query({
       query: () => `/genre/movie/list?${API_KEY}&language=ru`
     }),
     getFilmsWithGenre: build.query({
       query: ({genreId, page}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=ru`
-    })
+    }),
+    getSeriesGenres: build.query({
+      query: () => `/genre/tv/list?${API_KEY}&language=ru`
+    }),
+    getSeriesWithGenre: build.query({
+      query: ({genreId, page}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=ru`
+    }),
   })
 });
 
-export const {useGetPopularityQuery, useGetMostPopularQuery, useGetGenresQuery, useGetFilmsWithGenreQuery} = moviesApi;
+export const {useGetPopularityQuery, 
+              useGetMostPopularQuery, 
+              useGetFilmsGenresQuery, 
+              useGetFilmsWithGenreQuery,
+              useGetSeriesGenresQuery,
+              useGetSeriesWithGenreQuery} = moviesApi;
