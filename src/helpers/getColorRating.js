@@ -6,6 +6,7 @@ const getColorRating = (voteAverage) => {
       buildStyles({
         pathColor: '#FF0000',
         textColor: '#FFFFFF',
+        backgroundColor: '#000000',
       })
     )
   } else if (voteAverage <= 6) {
@@ -13,6 +14,7 @@ const getColorRating = (voteAverage) => {
       buildStyles({
         pathColor: '#FFA500',
         textColor: '#FFFFFF',
+        backgroundColor: '#000000',
       })
     )
   } else if (voteAverage < 8) {
@@ -20,6 +22,7 @@ const getColorRating = (voteAverage) => {
       buildStyles({
         pathColor: '#9ACD32',
         textColor: '#FFFFFF',
+        backgroundColor: '#000000',
       })
     )
   } else {
@@ -27,6 +30,7 @@ const getColorRating = (voteAverage) => {
       buildStyles({
         pathColor: '#00FF00',
         textColor: '#FFFFFF',
+        backgroundColor: '#000000',
       })
     )
   }

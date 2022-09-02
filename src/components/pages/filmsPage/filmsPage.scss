@@ -1,0 +1,235 @@
+@import '../../../style/variables.scss';
+
+.defaultImg {
+  width: 100%;
+  content: url(../../../resources/img/noImg.jpg);
+}
+
+.filmsPage {
+  &__container {
+    display: flex;
+  }
+  &__categories {
+    width: 20%;
+    padding-top: 2rem;
+    padding-left: 5rem;
+    h2 {
+      font-weight: 600;
+      font-size: 2.4rem;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      padding: 2rem;
+      border: 1px solid #e3e3e3;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+      font-weight:600;
+      font-size: 1.6rem;
+      row-gap: 1.4rem;
+      color: #666565b6;
+      .genre__active {
+        color: #000000;
+      }
+    }
+    li {
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+  &__burgerBtn {
+    display: none;
+  }
+  &__filmsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    padding-right: 5rem;
+    h1 {
+      margin-bottom: 2rem;
+      font-weight: 600;
+      font-size: 2.4rem;
+    }
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+  &__filmCard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e3e3e3;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    img {
+      background-image: url('../../../resources/img/noImg.jpg');
+      width: 100%;
+      border-top-left-radius: 1.2rem;
+      border-top-right-radius: 1.2rem;
+    }
+    &_progress {
+      width: 20%;
+      height: 20%;
+      position: relative;
+      bottom: 5%;
+      margin-left: 3%;
+    }
+    a {
+      position: relative;
+      bottom: 3%;
+      font-weight: 600;
+      font-size: 1.6rem;
+      height: 10%;
+      margin-left: 3%;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    p {
+      position: relative;
+      bottom: 3%;
+      margin-left: 3%;
+      padding-top: 1%;
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: #4443436c;
+    }
+  }
+  &__btnContainer {
+    display: flex;
+    column-gap: 3rem;
+    align-self: center;
+    margin-top: 3rem;
+    button {
+      background-color: transparent;
+      font-weight: 600;
+      font-size: 1.6rem;
+    }
+    &_prevPage {
+      border: 0;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      &:disabled {
+        cursor: default;
+        text-decoration: none;
+      }
+    }
+    &_currentPage {
+      padding: 0.7rem;
+      border: 1px solid #e3e3e3;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+    }
+    &_nextPage {
+      border: 0;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media (max-width: 1439px) {
+  .filmsPage {
+    &__categories {
+      ul {
+        font-size: 1.4rem;
+        padding: 1rem;
+      }
+    }
+    &__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .filmsPage {
+    &__categories {
+      width: 30%;
+      padding-left: 2rem;
+    }
+    &__filmsContainer {
+      padding-right: 2rem;
+      width: 70%;
+    }
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .filmsPage {
+    &__container {
+      flex-direction: column;
+    }
+    &__categories {
+      position: fixed;
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      padding-left: 6rem;
+      margin-top: 8rem;
+      transform: translateX(-100%);
+      transition: all 0.4s;
+      background-color: #063158;
+      color: #FFFFFF;
+      &.active {
+        transform: translateX(0);
+      }
+      ul {
+        border: 0;
+        padding: 0;
+        box-shadow: none;
+        color: #979494;
+        .genre__active {
+          color: #FFFFFF;
+        }
+      }
+    }
+    &__burgerBtn {
+      position: absolute;
+      left: 2rem;
+      top: 10.5rem;
+      z-index: 1;
+      display: block;
+      width: 1.8rem;
+      height: 1.2rem;
+      border: 0;
+      background-image: url('../../../resources/img/burger-black.svg');
+      background-color: #FFFFFF;
+      &.active {
+        position: fixed;
+        width: 1.4rem;
+        height: 1.4rem;
+        background-image: url('../../../resources/img/close.svg');
+        background-color: #063158;
+      }
+    }
+    &__filmsContainer {
+      width: 100%;
+      margin: 0;
+      margin-top: 8.4rem;
+      padding-top: 1.5rem;
+      padding-left: 2rem;
+      h1 {
+        margin-left: 4rem;
+        font-size: 2rem;
+      }
+    }
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

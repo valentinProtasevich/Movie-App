@@ -4,13 +4,17 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import SimpleSlider from '../../simpleSlider/SimpleSlider';
+import Spinner from '../../spinner/Spinner';
 import { useGetPopularityQuery, useGetMostPopularQuery } from '../../api/moviesApi';
 import getColorRating from '../../../helpers/getColorRating';
 import noImg from '../../../resources/img/noImg.jpg';
+import createDefaultImg from '../../../helpers/createDefaultImg';
 
 import './homePage.scss';
 
 const Homepage = () => {
+  window.scrollTo(0, 0);
+
   const { register, formState: { isValid }, handleSubmit } = useForm({
     mode: 'onChange'
   });
@@ -62,17 +66,24 @@ const Homepage = () => {
         <section className='homePage__filmsSlider'>
           <SimpleSlider title='Что популярно' slides={getSlides()}>
             {popularityError && <h1>Произошла ошибка при загрузке</h1>}
-            {popularityLoading && <h1>Идет загрузка...</h1>}
+            {popularityLoading && <Spinner/>}
             {popularityResults.map(item => (
               <div key={item.id} className='homePage__filmsSlider_cards'>
-                <img src={item.poster_path ? 'https://image.tmdb.org/t/p/w500/'+ item.poster_path : noImg} alt={item.title} />
-                  <div className='homePage__filmsSlider_progress'>
-                    <CircularProgressbar 
-                      value={item.vote_average * 10} 
-                      text={item.vote_average * 10 + '%'}
-                      styles={getColorRating(item.vote_average)}/>
-                  </div>
-                  <a href="">{item.title}</a>
+                <img 
+                  src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
+                  alt={item.title} 
+                  onError={(e) => {
+                    createDefaultImg(e.target);
+                    e.target.style.display = 'none';
+                  }}/>
+                <div className='homePage__filmsSlider_progress'>
+                  <CircularProgressbar 
+                    value={item.vote_average * 10} 
+                    text={item.vote_average * 10 + '%'}
+                    background={true}
+                    styles={getColorRating(item.vote_average)}/>
+                </div>
+                <a href="">{item.title}</a>
               </div>
             ))}
           </SimpleSlider>
@@ -82,10 +93,16 @@ const Homepage = () => {
           <h2>Рейтинг 100%</h2>
           <div className='homePage__mostPopular_grid'>
             {MostPopularityError && <h1>Произошла ошибка при загрузке</h1>}
-            {MostPopularityLoading && <h1>Идет загрузка...</h1>}
+            {MostPopularityLoading && <Spinner/>}
             {mostPopularityResults.map(item => (
               <div key={item.id} className='homePage__mostPopular_cards'>
-                <img src={item.poster_path ? 'https://image.tmdb.org/t/p/w500/'+ item.poster_path : noImg} alt={item.title} />
+                <img 
+                  src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
+                  alt={item.title} 
+                  onError={(e) => {
+                    createDefaultImg(e.target);
+                    e.target.style.display = 'none';
+                  }}/>
                 <a href="">{item.title}</a>
               </div>
             ))}
