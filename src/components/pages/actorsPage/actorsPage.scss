@@ -33,9 +33,11 @@
       font-size: 1.6rem;
       margin-top: 3%;
       margin-left: 3%;
+      margin-right: 3%;
     }
     li {
       margin-left: 3%;
+      margin-right: 3%;
       margin-top: 2%;
       margin-bottom: 2%;
       font-weight: 400;
@@ -76,6 +78,33 @@
         cursor: pointer;
         text-decoration: underline;
       }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .actorsPage {
+    &__container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    &__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .actorsPage {
+    &__container {
+      padding-top: 10rem;
+      h1 {
+        align-self: center;
+        font-size: 2rem;
+      }
+    }
+    &__grid {
+      grid-template-columns: 1fr;
     }
   }
 }
