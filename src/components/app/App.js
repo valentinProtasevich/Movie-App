@@ -8,6 +8,7 @@ import Spinner from '../spinner/Spinner';
 
 const Homepage = lazy(() => import('../pages/homePage/Homepage'));
 const FilmsPage = lazy(() => import('../pages/filmsPage/FilmsPage'));
+const SeriesPage = lazy(() => import('../pages/seriesPage/SeriesPage'));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Homepage/>} />
             <Route path='/films' element={<FilmsPage/>} />
+            <Route path='/series' element={<SeriesPage/>} />
           </Routes>
         </Suspense>
       </main>
