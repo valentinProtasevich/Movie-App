@@ -67,9 +67,6 @@
     background-size: cover;
   }
   &__actors {
-    // .slick-slider {
-    //   display: flex;
-    // }
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
@@ -175,6 +172,97 @@
         margin: 3%;
         font-weight: 700;
         font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .insidePage {
+    &__description {
+      &_flex {
+        column-gap: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height: auto;
+        img {
+          width: 40%;
+        }
+      }
+      h1 {
+        margin-top: 3rem;
+      }
+    }
+    &__actors {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      padding-left: 3rem;
+      padding-right: 3em;
+      h2 {
+        position: relative;
+        left: -1rem;
+      }
+      .slick-track {
+        column-gap: 1rem;
+      }
+    }
+    &__backdropsGallery {
+      margin-left: 2rem;
+      margin-right: 2rem;
+      margin-bottom: 2rem;
+      &_grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    &__recommendations {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
+      h2 {
+        position: relative;
+        left: -1rem;
+      }
+      .slick-track {
+        column-gap: 1rem;
+      }
+      &_card {
+        h3 {
+          min-height: 3.4rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .insidePage {
+    &__description {
+      &_flex {
+        position: relative;
+        flex-direction: column;
+        row-gap: 2rem;
+        margin-top: 8rem;
+        padding-top: 6rem;
+        padding-bottom: 2rem;
+        img {
+          width: 100%;
+        }
+        button {
+          position: absolute;
+          top: 2rem;
+          align-self: flex-start;
+        }
+      }
+      h1 {
+        margin-top: 0;
+      }
+    }
+    &__recommendations {
+      &_card {
+        h3 {
+          min-height: auto;
+        }
       }
     }
   }
