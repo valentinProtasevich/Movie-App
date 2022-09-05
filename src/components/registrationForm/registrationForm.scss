@@ -6,9 +6,9 @@
     display: grid;
     grid-template-rows: 4.4rem 49.4rem 4.8rem 3.2rem;
     width: 100%;
-    height: calc(100vh - 7rem - 8.1rem);
+    min-height: calc(100vh - 7rem - 8.1rem);
     padding-top: 3rem;
-    padding-bottom: auto;
+    padding-bottom: 3rem;
     padding-left: 5rem;
     padding-right: 5rem;
     h1{
@@ -92,6 +92,28 @@
       cursor: default;
       background-color: #2295b4;
       color: #d3cccc;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .registration {
+    &__grid {
+      padding: 2rem;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .registration {
+    &__grid {
+      padding-top: 10rem;
+    }
+    &__form {
+      .errorMessage {
+        font-size: 1rem;
+        line-height: 1rem;
+      }
     }
   }
 }
