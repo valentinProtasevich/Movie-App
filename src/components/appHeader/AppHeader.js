@@ -29,7 +29,7 @@ const AppHeader = () => {
                 className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
                 to=''>Главная</NavLink>
           </li>
-          <li><NavLink 
+          {/* <li><NavLink 
                 onClick={activateMenu}
                 end
                 className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
@@ -40,6 +40,18 @@ const AppHeader = () => {
                 end
                 className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
                 to='/series'>Сериалы</NavLink>
+          </li> */}
+          <li><NavLink 
+            onClick={activateMenu}
+            end
+            className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
+            to='/movie'>Фильмы</NavLink>
+          </li>
+          <li><NavLink 
+                onClick={activateMenu}
+                end
+                className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
+                to='/tv'>Сериалы</NavLink>
           </li>
           <li><NavLink 
                 onClick={activateMenu}

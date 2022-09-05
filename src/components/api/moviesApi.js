@@ -10,7 +10,7 @@ export const moviesApi = createApi({
       query: () => `/discover/movie?sort_by=popularity.desc&${API_KEY}&language=ru`
     }),
     getMostPopular: build.query({
-      query: () => `/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&${API_KEY}&language=ru`
+      query: () => `/discover/movie?with_genres=18&primary_release_year=2022&${API_KEY}&language=ru`
     }),
     getFilmsGenres: build.query({
       query: () => `/genre/movie/list?${API_KEY}&language=ru`
@@ -26,6 +26,18 @@ export const moviesApi = createApi({
     }),
     getPopularActors: build.query({
       query: (page) => `/person/popular?${API_KEY}&page=${page}&language=ru`
+    }),
+    getFilmOrSeries: build.query({
+      query: ([type, id]) => `/${type}/${id}?${API_KEY}&language=ru`
+    }),
+    getActors: build.query({
+      query: ([type, id]) => `/${type}/${id}?${API_KEY}&append_to_response=credits&language=ru`
+    }),
+    getImages: build.query({
+      query: ([type, id]) => `/${type}/${id}/images?${API_KEY}`
+    }),
+    getRecommendations: build.query({
+      query: ([type, id]) => `/${type}/${id}/recommendations?${API_KEY}&language=ru`
     })
   })
 });
@@ -36,4 +48,8 @@ export const {useGetPopularityQuery,
               useGetFilmsWithGenreQuery,
               useGetSeriesGenresQuery,
               useGetSeriesWithGenreQuery,
-              useGetPopularActorsQuery} = moviesApi;
+              useGetPopularActorsQuery,
+              useGetFilmOrSeriesQuery,
+              useGetActorsQuery,
+              useGetImagesQuery,
+              useGetRecommendationsQuery} = moviesApi;
