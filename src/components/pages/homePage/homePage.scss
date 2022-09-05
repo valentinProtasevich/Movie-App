@@ -132,10 +132,11 @@
       padding-top: 2rem;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(4, 1fr);
       gap: 3rem;
     }
     &_cards {
+      display: flex;
+      flex-direction: column;
       border: 1px solid #e3e3e3;
       box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
       border-radius: 1.5rem;
@@ -149,12 +150,21 @@
         border-top-right-radius: 1.5rem;
       }
       h3 {
-        margin-top: 1rem;
+        position: relative;
+        bottom: 3%;
         margin-left: 3%;
         margin-right: 3%;
         font-weight: 700;
         font-size: 1.6rem;
       }
+    }
+    &_progress {
+      width: 15%;
+      height: 15%;
+      position: relative;
+      bottom: 5%;
+      margin-left: 3%;
+      margin-right: 3%;
     }
   }
   &__about {
@@ -188,10 +198,21 @@
       margin-right: 2em;
       padding-left: 2rem;
       padding-right: 2em;
+      &_cards {
+        h3 {
+          bottom: 1rem;
+        }
+      }
+      &_progress {
+        bottom: 1rem;
+      }
     }
     &__mostPopular {
       padding-left: 2rem;
       padding-right: 2rem;
+      &_grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
     &__about {
       margin-top: 2rem;
@@ -239,6 +260,14 @@
       padding-top: 2rem;
       h2 {
         font-size: 2.2rem;
+      }
+      &_cards {
+        h3 {
+          bottom: 2rem;
+        }
+      }
+      &_progress {
+        bottom: 3rem;
       }
     }
     &__mostPopular {

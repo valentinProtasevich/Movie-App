@@ -97,6 +97,13 @@ const Homepage = () => {
                     createDefaultImg(e.target);
                     e.target.style.display = 'none';
                   }}/>
+                <div className='homePage__mostPopular_progress'>
+                  <CircularProgressbar 
+                    value={item.vote_average * 10} 
+                    text={item.vote_average * 10 + '%'}
+                    background={true}
+                    styles={getColorRating(item.vote_average)}/>
+                </div>
                 <h3>{item.title}</h3>
               </Link>
             ))}
