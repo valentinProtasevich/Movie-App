@@ -4,10 +4,15 @@
   &__grid {
     justify-self: end;
     display: grid;
-    grid-template-rows: 4.4rem 47.4rem 4.8rem 3.2rem;
-    width: 50rem;
+    grid-template-rows: 4.4rem 49.4rem 4.8rem 3.2rem;
+    width: 100%;
+    height: calc(100vh - 7rem - 8.1rem);
+    padding-top: 3rem;
+    padding-bottom: auto;
+    padding-left: 5rem;
+    padding-right: 5rem;
     h1{
-      justify-self: center;
+      justify-self: flex-start;
       font-weight: 700;
       font-size: 3.2rem;
       line-height: 4.4rem;
@@ -31,6 +36,7 @@
     }
   }
   &__form {
+    margin-top: 2rem;
     position: relative;
     display: grid;
     grid-template-rows: 2.9rem 4.6rem 5.3rem 4.6rem 5.3rem 4.6rem 5.3rem 4.6rem 10.2rem;
@@ -68,6 +74,8 @@
     }
   }
   &__input {
+    padding-left: 1rem;
+    padding-right: 1rem;
     border: 1px solid #9c9999a8;
     border-radius: 0.5rem;
   }
