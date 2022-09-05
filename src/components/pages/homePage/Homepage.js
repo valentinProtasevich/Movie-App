@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Helmet } from "react-helmet";
+import { Link } from 'react-router-dom';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -9,6 +10,7 @@ import { useGetPopularityQuery, useGetMostPopularQuery } from '../../api/moviesA
 import getColorRating from '../../../helpers/getColorRating';
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from '../../../helpers/createDefaultImg';
+import getSlides from '../../../helpers/getSlides';
 
 import './homePage.scss';
 
@@ -32,14 +34,6 @@ const Homepage = () => {
   } = useGetMostPopularQuery();
   let popularityResults = popularity.results ?? [];
   let mostPopularityResults = mostPopularity.results ?? [];
-
-  const getSlides = () => {
-    if (window.screen.width < 768) {
-      return 1
-    } else {
-      return 5
-    }
-  }
   
   return (
     <>
@@ -68,7 +62,7 @@ const Homepage = () => {
             {popularityError && <h1>Произошла ошибка при загрузке</h1>}
             {popularityLoading && <Spinner/>}
             {popularityResults.map(item => (
-              <div key={item.id} className='homePage__filmsSlider_cards'>
+              <Link to={`/movie/${item.id}`} key={item.id} className='homePage__filmsSlider_cards'>
                 <img 
                   src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
                   alt={item.title} 
@@ -83,19 +77,19 @@ const Homepage = () => {
                     background={true}
                     styles={getColorRating(item.vote_average)}/>
                 </div>
-                <a href="">{item.title}</a>
-              </div>
+                <h3>{item.title}</h3>
+              </Link>
             ))}
           </SimpleSlider>
         </section>
 
         <section className='homePage__mostPopular'>
-          <h2>Рейтинг 100%</h2>
+          <h2>Лучшие фильмы этого года</h2>
           <div className='homePage__mostPopular_grid'>
             {MostPopularityError && <h1>Произошла ошибка при загрузке</h1>}
             {MostPopularityLoading && <Spinner/>}
             {mostPopularityResults.map(item => (
-              <div key={item.id} className='homePage__mostPopular_cards'>
+              <Link to={`/movie/${item.id}`} key={item.id} className='homePage__mostPopular_cards'>
                 <img 
                   src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
                   alt={item.title} 
@@ -103,8 +97,15 @@ const Homepage = () => {
                     createDefaultImg(e.target);
                     e.target.style.display = 'none';
                   }}/>
-                <a href="">{item.title}</a>
-              </div>
+                <div className='homePage__mostPopular_progress'>
+                  <CircularProgressbar 
+                    value={item.vote_average * 10} 
+                    text={item.vote_average * 10 + '%'}
+                    background={true}
+                    styles={getColorRating(item.vote_average)}/>
+                </div>
+                <h3>{item.title}</h3>
+              </Link>
             ))}
           </div>
         </section>

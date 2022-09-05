@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
@@ -88,7 +89,7 @@ const FilmsPage = () => {
           <h1>Популярные фильмы</h1>
           <div className="filmsPage__grid">
             {filmsResults.map(item => (
-              <div key={item.id} className='filmsPage__filmCard'>
+              <Link to={`/movie/${item.id}`} key={item.id} className='filmsPage__filmCard'>
                 <img 
                   src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
                   alt={item.title} 
@@ -103,9 +104,9 @@ const FilmsPage = () => {
                       background={true}
                       styles={getColorRating(item.vote_average)}/>
                 </div>
-                <a href="">{item.title}</a>
+                <h3>{item.title}</h3>
                 <p>{item.release_date}</p>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="filmsPage__btnContainer">

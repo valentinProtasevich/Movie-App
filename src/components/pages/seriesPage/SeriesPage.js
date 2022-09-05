@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
@@ -30,6 +31,8 @@ const SeriesPage = () => {
     isError: seriesError
   } = useGetSeriesWithGenreQuery({genreId, page});
   let seriesResults = seriesObj.results ?? [];
+
+  console.log(seriesObj);
 
   useEffect(() => {
     document.querySelectorAll('li').forEach((element) => {
@@ -88,24 +91,24 @@ const SeriesPage = () => {
           <h1>Популярные сериалы</h1>
           <div className="seriesPage__grid">
             {seriesResults.map(item => (
-              <div key={item.id} className='seriesPage__serieCard'>
+              <Link to={`/tv/${item.id}`} key={item.id} className='seriesPage__serieCard'>
                 <img 
-                  src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
-                  alt={item.name} 
-                  onError={(e) => {
-                  createDefaultImg(e.target);
-                  e.target.style.display = 'none';
-                }}/>
-                <div className='seriesPage__serieCard_progress'>
-                    <CircularProgressbar 
-                      value={item.vote_average * 10} 
-                      text={item.vote_average * 10 + '%'}
-                      background={true}
-                      styles={getColorRating(item.vote_average)}/>
-                </div>
-                <a href="">{item.name}</a>
-                <p>{item.first_air_date}</p>
-              </div>
+                    src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
+                    alt={item.name} 
+                    onError={(e) => {
+                    createDefaultImg(e.target);
+                    e.target.style.display = 'none';
+                  }}/>
+                  <div className='seriesPage__serieCard_progress'>
+                      <CircularProgressbar 
+                        value={item.vote_average * 10} 
+                        text={item.vote_average * 10 + '%'}
+                        background={true}
+                        styles={getColorRating(item.vote_average)}/>
+                  </div>
+                  <h3>{item.name}</h3>
+                  <p>{item.first_air_date}</p>
+              </Link>
             ))}
           </div>
           <div className="seriesPage__btnContainer">

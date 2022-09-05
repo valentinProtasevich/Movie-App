@@ -10,6 +10,7 @@ const Homepage = lazy(() => import('../pages/homePage/Homepage'));
 const FilmsPage = lazy(() => import('../pages/filmsPage/FilmsPage'));
 const SeriesPage = lazy(() => import('../pages/seriesPage/SeriesPage'));
 const ActorsPage = lazy(() => import('../pages/actorsPage/ActorsPage'));
+const InsidePage = lazy(() => import('../pages/insidePage/InsidePage'));
 
 function App() {
   return (
@@ -19,9 +20,11 @@ function App() {
         <Suspense fallback={<Spinner/>}>
           <Routes>
             <Route path='/' element={<Homepage/>} />
-            <Route path='/films' element={<FilmsPage/>} />
-            <Route path='/series' element={<SeriesPage/>} />
+            <Route path='/movie' element={<FilmsPage/>} />
+            <Route path='/tv' element={<SeriesPage/>} />
             <Route path='/actors' element={<ActorsPage/>} />
+            <Route path='/movie/:id' element={<InsidePage dataType='movie'/>} />
+            <Route path='/tv/:id' element={<InsidePage dataType='tv'/>} />
           </Routes>
         </Suspense>
       </main>
