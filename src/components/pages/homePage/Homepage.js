@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Helmet } from "react-helmet";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -17,10 +17,14 @@ import './homePage.scss';
 const Homepage = () => {
   window.scrollTo(0, 0);
 
+  const navigate = useNavigate();
+
   const { register, formState: { isValid }, handleSubmit } = useForm({
     mode: 'onChange'
   });
-  const onSubmit = dataSearch => console.log(dataSearch);
+  const onSubmit = dataSearch => {
+    navigate(`/search/${dataSearch.search}`)
+  };
 
   const {
     data: popularity = {}, 
@@ -51,7 +55,7 @@ const Homepage = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <input className="homePage__searchBlock_input"
             {...register("search", { required: true })} 
-            placeholder = 'Найти фильм, сериал, актера ...'
+            placeholder = 'Найти фильм или сериал...'
             />
             <input className="homePage__searchBlock_submit" type="submit" value={'Поиск'} disabled={!isValid}/>
           </form>
