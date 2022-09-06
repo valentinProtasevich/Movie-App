@@ -26,7 +26,6 @@ const SearchPage = () => {
     isError: movieOrTvError
   } = useSearchMovieOrTvQuery([type, keyWords]);
   let results = movieOrTvObj.results ?? [];
-  console.log(results);
 
   useEffect(() => {
     document.querySelectorAll('li').forEach((element) => {
@@ -67,7 +66,7 @@ const SearchPage = () => {
 
         <div className='searchPage__flexContainer'>
           <section className='searchPage__types'>
-            <h2>Результаты поиска</h2>
+            <h2>Результаты поиска:</h2>
             <ul>
               <li 
                 id='movie'
