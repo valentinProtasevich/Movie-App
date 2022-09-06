@@ -1,10 +1,10 @@
 @import '../../style/variables.scss';
 
-.registration {
+.login {
   &__grid {
     justify-self: end;
     display: grid;
-    grid-template-rows: 4.4rem 49.4rem 4.8rem 3.2rem;
+    grid-template-rows: 4.4rem 29.6rem 5.6rem;
     width: 100%;
     min-height: calc(100vh - 7rem - 8.1rem);
     padding-top: 3rem;
@@ -22,14 +22,14 @@
       align-self: end;
       font-weight: 400;
       font-size: 2rem;
-      line-height: 3.2rem;
+      line-height: 2.7rem;
     }
     a{
       justify-self: center;
       align-self: end;
       font-weight: 400;
       font-size: 2rem;
-      line-height: 3.2rem;
+      line-height: 2.7rem;
       &:hover {
         text-decoration: underline;
       }
@@ -38,7 +38,7 @@
   &__form {
     position: relative;
     display: grid;
-    grid-template-rows: 2.9rem 4.6rem 5.3rem 4.6rem 5.3rem 4.6rem 5.3rem 4.6rem 10.2rem;
+    grid-template-rows: 2.9rem 4.6rem 5.3rem 4.6rem 10.2rem;
     margin-top: 2rem;
     label {
       align-self: end;
@@ -52,24 +52,9 @@
       line-height: 1.5rem;
       color: #bb3535;
     }
-    &_errorName {
-      position: absolute;
-      top: 7.5rem;
-      left: 0;
-    }
     &_errorEmail {
       position: absolute;
-      top: 17.5rem;
-      left: 0;
-    }
-    &_errorPassword {
-      position: absolute;
-      top: 27.5rem;
-      left: 0;
-    }
-    &_errorRepeatPassword {
-      position: absolute;
-      top: 37.5rem;
+      top: 8rem;
       left: 0;
     }
   }
@@ -97,7 +82,7 @@
 }
 
 @media (max-width: 1023px) {
-  .registration {
+  .login {
     &__grid {
       padding: 2rem;
       a{
@@ -108,7 +93,7 @@
 }
 
 @media (max-width: 767px) {
-  .registration {
+  .login {
     &__grid {
       padding-top: 10rem;
     }
