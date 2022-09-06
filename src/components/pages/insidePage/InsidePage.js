@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from "react-helmet";
+import { useEffect } from 'react';
 import { CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -10,6 +11,7 @@ import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
 import getSlides from '../../../helpers/getSlides';
+import { useAuth } from '../../../hooks/useAuth';
 
 import './insidePage.scss'
 
@@ -20,6 +22,14 @@ const InsidePage = ({dataType}) => {
 
   const navigate = useNavigate();
 
+  const {isAuth} = useAuth();
+
+  // useEffect(() => {
+  //   if (!isAuth) {
+  //     navigate('/login');
+  //     alert('Пожалуйста авторизуйтесь, чтобы получить доступ к данной странице.');
+  //   }
+  // }, []);
 
   const {
     data: filmOrSerieObj = {},
