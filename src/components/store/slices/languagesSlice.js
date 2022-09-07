@@ -8,12 +8,12 @@ const languagesSlice = createSlice({
   name: 'languages',
   initialState,
   reducers: {
-    changeLanguage(state, action) {
+    setLanguage(state, action) {
       state.language = action.payload.language;
     }
   }
 });
 
-export const {changeLanguage} = languagesSlice.actions;
+export const {setLanguage} = languagesSlice.actions;
 
 export default languagesSlice.reducer;

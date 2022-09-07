@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 
 import {useAuth} from '../../hooks/useAuth';
 import { removeUser } from '../store/slices/userSlice';
-import { changeLanguage } from '../store/slices/languagesSlice';
+import { setLanguage } from '../store/slices/languagesSlice';
+import  translateWord from '../../helpers/translateWord';
 
 import './appHeader.scss';
 
@@ -14,39 +15,10 @@ const AppHeader = () => {
 
   const {isAuth} = useAuth();
 
-  const accountButtons = () => {
-    if (isAuth) {
-      return (
-        <>
-          <li><NavLink
-              onClick={() => {
-                dispatch(removeUser());
-                activateMenu();
-              }} 
-              end 
-              className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
-              to='/login'>Выйти</NavLink>
-          </li>
-        </>
-      )
-    } else {
-      return (
-        <>
-          <li><NavLink 
-              onClick={activateMenu}
-              end 
-              className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
-              to='/login'>Вход</NavLink>
-          </li>
-          <li><NavLink 
-              onClick={activateMenu}
-              end 
-              className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
-              to='/registration'>Регистрация</NavLink>
-          </li>
-        </>
-      )
-    }
+  const changeLanguage = (e) => {
+    dispatch(setLanguage({
+      language: e.target.value
+    }));
   };
 
   const activateMenu = () => {
@@ -59,17 +31,42 @@ const AppHeader = () => {
       menuHeader.innerHTML = 'Меню';
       document.querySelector('ul').prepend(menuHeader);
     }
-  }
+  };
 
-  const getLanguage = (e) => {
-    //console.log(e.target.value);
-    dispatch(changeLanguage({
-      language: e.target.value
-    }));
-    //console.log(language);
-  }
-
-  console.log(language);
+  const accountButtons = () => {
+    if (isAuth) {
+      return (
+        <>
+          <li><NavLink
+              onClick={() => {
+                dispatch(removeUser());
+                activateMenu();
+              }} 
+              end 
+              className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
+              to='/login'>{translateWord(language, 'Выйти', 'Logout')}</NavLink>
+          </li>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <li><NavLink 
+              onClick={activateMenu}
+              end 
+              className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
+              to='/login'>{translateWord(language, 'Вход', 'Login')}</NavLink>
+          </li>
+          <li><NavLink 
+              onClick={activateMenu}
+              end 
+              className={({ isActive }) => "" + (isActive ? " app__navigation_selected" : "")}
+              to='/registration'>{translateWord(language, 'Регистрация', 'Registration')}</NavLink>
+          </li>
+        </>
+      )
+    }
+  };
 
   return (
     <header className='app__header'>
@@ -78,34 +75,37 @@ const AppHeader = () => {
       </h1>
       <button className='app__header_burgerBtn' onClick={activateMenu}></button>
       <nav className='app__navigation'>
-        <select name="languages" id="languages" onChange={(e) => getLanguage(e)}>
-          <option value="rus">rus</option>
-          <option value="eng">eng</option>
-        </select>
         <ul>
+          <li>
+            <select className='app__navigation_languages' value={language} name="languages" id="languages" onChange={(e) => changeLanguage(e)}>
+              <option disabled>Language:</option>
+              <option value="rus">rus</option>
+              <option value="eng">eng</option>
+            </select>
+          </li>
           <li><NavLink 
                 onClick={activateMenu}
                 end
                 className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-                to=''>Главная</NavLink>
+                to=''>{translateWord(language, 'Главная', 'Home')}</NavLink>
           </li>
           <li><NavLink 
             onClick={activateMenu}
             end
             className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-            to='/movie'>Фильмы</NavLink>
+            to='/movie'>{translateWord(language, 'Фильмы', 'Movies')}</NavLink>
           </li>
           <li><NavLink 
                 onClick={activateMenu}
                 end
                 className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-                to='/tv'>Сериалы</NavLink>
+                to='/tv'>{translateWord(language, 'Сериалы', 'TV Shows')}</NavLink>
           </li>
           <li><NavLink 
                 onClick={activateMenu}
                 end
                 className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-                to='/actors'>Актеры</NavLink>
+                to='/actors'>{translateWord(language, 'Актеры', 'People')}</NavLink>
           </li>
           {accountButtons()}
         </ul>
