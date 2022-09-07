@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import useSignInWithEmail from '../../hooks/useSignInWithEmail';
+import useTranslateWord from '../../hooks/useTranslateWord';
 
 import './loginForm.scss';
 
@@ -13,9 +14,11 @@ const LoginForm = () => {
   });
   const onSubmit = data => signInWithEmail(data);
 
+  const translateWord = useTranslateWord();
+
   return (
     <div className='login__grid'>
-      <h1>Вход</h1>
+      <h1>{translateWord('Вход', 'Login')}</h1>
       <form className='login__form' onSubmit={handleSubmit(onSubmit)}>
         <label>Email</label>
         <input className='login__input'
@@ -24,17 +27,17 @@ const LoginForm = () => {
           })} 
           required
           />
-        {errors?.email?.type === "pattern" && <p className='errorMessage login__form_errorEmail'>Пожалуйста, введите корректный адрес электронной почты.</p>}
+        {errors?.email?.type === "pattern" && <p className='errorMessage login__form_errorEmail'>{translateWord('Пожалуйста, введите корректный адрес электронной почты.', 'Please enter a valid email address.')}</p>}
 
-        <label>Пароль</label>
+        <label>{translateWord('Пароль', 'Password')}</label>
         <input className='login__input' type={"password"}
           {...register("password")} 
           required
           />
 
-        <input className='login__input login__submitBtn' type="submit" value={'Войти'} disabled={!isValid}/>
+        <input className='login__input login__submitBtn' type="submit" value={translateWord('Войти', 'Login')} disabled={!isValid}/>
       </form>
-      <Link to='/registration'>Вы еще не зарегистрированы?</Link>
+      <Link to='/registration'>{translateWord('Вы еще не зарегистрированы?', 'You are not registered yet?')}</Link>
     </div>
   )
 };
