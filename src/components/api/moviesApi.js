@@ -7,10 +7,10 @@ export const moviesApi = createApi({
   baseQuery: fetchBaseQuery({baseUrl: 'https://api.themoviedb.org/3'}),
   endpoints: (build) => ({
     getPopularity: build.query({
-      query: () => `/discover/movie?sort_by=popularity.desc&${API_KEY}&language=ru`
+      query: (language) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&language=${language}`
     }),
     getMostPopular: build.query({
-      query: () => `/discover/movie?with_genres=18&primary_release_year=2022&${API_KEY}&language=ru`
+      query: (language) => `/discover/movie?with_genres=18&primary_release_year=2022&${API_KEY}&language=${language}`
     }),
     getFilmsGenres: build.query({
       query: () => `/genre/movie/list?${API_KEY}&language=ru`
