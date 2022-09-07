@@ -40,7 +40,7 @@ export const moviesApi = createApi({
       query: ([type, id, language]) => `/${type}/${id}/recommendations?${API_KEY}&language=${language}`
     }),
     searchMovieOrTv: build.query({
-      query: ([type, keyWords]) => `/search/${type}?${API_KEY}&language=ru&query=${keyWords}`
+      query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
     })
   })
 });
