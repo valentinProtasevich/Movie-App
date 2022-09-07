@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useSelector } from 'react-redux';
 
 import { useGetPopularActorsQuery } from "../../api/moviesApi";
 import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
+import useTranslateWord from "../../../hooks/useTranslateWord";
 
 import './actorsPage.scss';
 
 const ActorsPage = () => {
   window.scrollTo(0, 0);
+
+  const language = useSelector(state => state.languages.language);
 
   const [page, setPage] = useState(1);
 
@@ -17,7 +21,7 @@ const ActorsPage = () => {
     data: actorsObj = {},
     isFetching: actorsFetching, 
     isError: actorsError
-  } = useGetPopularActorsQuery(page);
+  } = useGetPopularActorsQuery({page, language});
   let actors = actorsObj.results ?? [];
   console.log(actors);
 
@@ -28,6 +32,8 @@ const ActorsPage = () => {
       document.querySelector('.actorsPage__btnContainer_prevPage').removeAttribute('disabled');
     }
   })
+
+  const translateWord = useTranslateWord();
   
   return (
     <>
@@ -39,10 +45,10 @@ const ActorsPage = () => {
         <title>Movies: actors</title>
       </Helmet>
       <div className="actorsPage__container">
-        <h1>Популярные актеры</h1>
+        <h1>{translateWord('Популярные актеры', 'Popular people')}</h1>
 
         <div className="actorsPage__grid">
-          {actorsError && <h1>Произошла ошибка при загрузке</h1>}
+          {actorsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
           {actorsFetching && <Spinner/>}
           {actors.map(item => (
             <div key={item.id} className='actorsPage__actorCard'>
@@ -70,7 +76,8 @@ const ActorsPage = () => {
                   window.scrollTo(0, 0);
                   setPage(page - 1);
                 }}>
-              Предыдущая страница</button>
+                {translateWord('Предыдущая страница', 'Previous page')}
+              </button>
               <button className="actorsPage__btnContainer_currentPage">{page}</button>
               <button 
                 className="actorsPage__btnContainer_nextPage" 
@@ -78,7 +85,8 @@ const ActorsPage = () => {
                   window.scrollTo(0, 0);
                   setPage(page + 1);
                 }}>
-              Следующая страница</button>
+                {translateWord('Следующая страница', 'Next page')}
+              </button>
           </div>
       </div>
     </>

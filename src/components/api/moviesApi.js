@@ -25,7 +25,7 @@ export const moviesApi = createApi({
       query: ({genreId, page, language}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
     }),
     getPopularActors: build.query({
-      query: (page) => `/person/popular?${API_KEY}&page=${page}&language=ru`
+      query: ({page, language}) => `/person/popular?${API_KEY}&page=${page}&language=${language}`
     }),
     getFilmOrSeries: build.query({
       query: ([type, id]) => `/${type}/${id}?${API_KEY}&language=ru`
