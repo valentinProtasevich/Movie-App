@@ -19,10 +19,10 @@ export const moviesApi = createApi({
       query: ({genreId, page, language}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
     }),
     getSeriesGenres: build.query({
-      query: () => `/genre/tv/list?${API_KEY}&language=ru`
+      query: (language) => `/genre/tv/list?${API_KEY}&language=${language}`
     }),
     getSeriesWithGenre: build.query({
-      query: ({genreId, page}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=ru`
+      query: ({genreId, page, language}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
     }),
     getPopularActors: build.query({
       query: (page) => `/person/popular?${API_KEY}&page=${page}&language=ru`
