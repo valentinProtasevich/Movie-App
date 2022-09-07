@@ -1,13 +1,16 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {useAuth} from '../../hooks/useAuth';
 import { removeUser } from '../store/slices/userSlice';
+import { changeLanguage } from '../store/slices/languagesSlice';
 
 import './appHeader.scss';
 
 const AppHeader = () => {
   const dispatch = useDispatch();
+  const language = useSelector(state => state.languages.language);
 
   const {isAuth} = useAuth();
 
@@ -58,6 +61,16 @@ const AppHeader = () => {
     }
   }
 
+  const getLanguage = (e) => {
+    //console.log(e.target.value);
+    dispatch(changeLanguage({
+      language: e.target.value
+    }));
+    //console.log(language);
+  }
+
+  console.log(language);
+
   return (
     <header className='app__header'>
       <h1 className='app__title'>
@@ -65,6 +78,10 @@ const AppHeader = () => {
       </h1>
       <button className='app__header_burgerBtn' onClick={activateMenu}></button>
       <nav className='app__navigation'>
+        <select name="languages" id="languages" onChange={(e) => getLanguage(e)}>
+          <option value="rus">rus</option>
+          <option value="eng">eng</option>
+        </select>
         <ul>
           <li><NavLink 
                 onClick={activateMenu}

@@ -13,10 +13,12 @@ import storage from 'redux-persist/lib/storage';
 
 import userReducer from './slices/userSlice';
 import { moviesApi } from "../api/moviesApi";
+import languageReducer from './slices/languagesSlice';
 
 const rootReducer = combineReducers({
   user: userReducer,
   [moviesApi.reducerPath]: moviesApi.reducer,
+  languages: languageReducer,
 });
 
 const persistConfig = {
