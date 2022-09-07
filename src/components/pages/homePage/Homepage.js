@@ -20,11 +20,8 @@ const Homepage = () => {
   window.scrollTo(0, 0);
 
   const language = useSelector(state => state.languages.language);
-  console.log(language);
 
   const navigate = useNavigate();
-
-  const translateWord = useTranslateWord();
 
   const { register, formState: { isValid }, handleSubmit } = useForm({
     mode: 'onChange'
@@ -46,6 +43,8 @@ const Homepage = () => {
     isError: MostPopularityError
   } = useGetMostPopularQuery(language);
   let mostPopularityResults = mostPopularity.results ?? [];
+
+  const translateWord = useTranslateWord();
   
   return (
     <>

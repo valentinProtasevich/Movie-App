@@ -13,10 +13,10 @@ export const moviesApi = createApi({
       query: (language) => `/discover/movie?with_genres=18&primary_release_year=2022&${API_KEY}&language=${language}`
     }),
     getFilmsGenres: build.query({
-      query: () => `/genre/movie/list?${API_KEY}&language=ru`
+      query: (language) => `/genre/movie/list?${API_KEY}&language=${language}`
     }),
     getFilmsWithGenre: build.query({
-      query: ({genreId, page}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=ru`
+      query: ({genreId, page, language}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
     }),
     getSeriesGenres: build.query({
       query: () => `/genre/tv/list?${API_KEY}&language=ru`
