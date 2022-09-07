@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -12,11 +13,14 @@ import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
 import getSlides from '../../../helpers/getSlides';
 import { useAuth } from '../../../hooks/useAuth';
+import useTranslateWord from '../../../hooks/useTranslateWord';
 
 import './insidePage.scss'
 
 const InsidePage = ({dataType}) => {
   window.scrollTo(0, 0);
+
+  const language = useSelector(state => state.languages.language);
     
   const {id} = useParams();
 
@@ -35,14 +39,14 @@ const InsidePage = ({dataType}) => {
     data: filmOrSerieObj = {},
     isFetching: filmOrSerieFetching, 
     isError: filmOrSerieError
-  } = useGetFilmOrSeriesQuery([dataType, id]);
+  } = useGetFilmOrSeriesQuery([dataType, id, language]);
   const {backdrop_path, poster_path, title, vote_average, overview} = filmOrSerieObj;
 
   const {
     data: actorsObj = {},
     isFetching: actorsFetching, 
     isError: actorsError
-  } = useGetActorsQuery([dataType, id]);
+  } = useGetActorsQuery([dataType, id, language]);
   let actors = [];
   actorsObj.credits?.cast.forEach((i, index) => {
     if (index <= 19) {
@@ -66,9 +70,10 @@ const InsidePage = ({dataType}) => {
     data: recommendationsObj = {},
     isFetching: recommendationsFetching, 
     isError: recommendationsError
-  } = useGetRecommendationsQuery([dataType, id]);
+  } = useGetRecommendationsQuery([dataType, id, language]);
   let recommendations = recommendationsObj.results ?? [];
-  console.log(backdrops);
+
+  const translateWord = useTranslateWord();
 
   return (
     <>
@@ -81,7 +86,7 @@ const InsidePage = ({dataType}) => {
       </Helmet>
       <div className='insidePage__container'>
         <section className='insidePage__description'>
-          {filmOrSerieError && <h1>Произошла ошибка при загрузке</h1>}
+          {filmOrSerieError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
           {filmOrSerieFetching && <Spinner/>}
           <div className='insidePage__background' style={{ backgroundImage: backdrop_path ? `url(https://image.tmdb.org/t/p/w500${backdrop_path})` : `url(${noImg})`}}>
             <div className='insidePage__description_flex'>
@@ -93,7 +98,7 @@ const InsidePage = ({dataType}) => {
                 e.target.style.display = 'none';
               }}/>
               <div className='insidePage__description_flex_textBlock'>
-                <button onClick={() => navigate(-1)}>Вернуться назад</button>
+                <button onClick={() => navigate(-1)}>{translateWord('Вернуться назад', 'Come back')}</button>
                 <h1>{dataType === 'movie' ? title : filmOrSerieObj.name}</h1>
                 <p className='insidePage__description_flex_date'>{dataType === 'movie' ? filmOrSerieObj.release_date : filmOrSerieObj.first_air_date}</p>
                 <div className='insidePage__description_flex_progress'>
@@ -103,7 +108,7 @@ const InsidePage = ({dataType}) => {
                     background={true}
                     styles={getColorRating(vote_average)}/>
                 </div>
-                <h3>{overview ? 'Описание' : null}</h3>
+                <h3>{overview ? translateWord('Описание', 'Overview') : null}</h3>
                 <p className='insidePage__description_flex_overview'>{overview}</p>
               </div>
             </div>
@@ -111,8 +116,8 @@ const InsidePage = ({dataType}) => {
         </section>
 
         <section className='insidePage__actors'>
-          <SimpleSlider title='В ролях актеры' slides={getSlides()}>
-            {actorsError && <h1>Произошла ошибка при загрузке</h1>}
+          <SimpleSlider title={translateWord('В ролях актеры', 'Top Cast')} slides={getSlides()}>
+            {actorsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
             {actorsFetching && <Spinner/>}
             {actors.map(item => (
               <div key={item.id} className='insidePage__actors_card'>
@@ -130,9 +135,9 @@ const InsidePage = ({dataType}) => {
         </section>
 
         <section className='insidePage__backdropsGallery'>
-          <h2>Фотогалерея</h2>
+          <h2>{translateWord('Фотогалерея', 'Backdrops')}</h2>
           <div className='insidePage__backdropsGallery_grid'>
-            {imagesError && <h1>Произошла ошибка при загрузке</h1>}
+            {imagesError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
             {imagesFetching && <Spinner/>}
             {backdrops.map((item, index) => (
               <a key={index} href={`https://image.tmdb.org/t/p/w500/${item.file_path}`} target='_blank' rel='noreferrer'>
@@ -149,9 +154,9 @@ const InsidePage = ({dataType}) => {
         </section>
 
         <section className='insidePage__recommendations'>
-          <h2>{recommendations.length ? 'Рекомендации' : null}</h2>
+          <h2>{recommendations.length ? translateWord('Рекомендации', 'Recommendations') : null}</h2>
           <SimpleSlider slides={getSlides()}>
-              {recommendationsError && <h1>Произошла ошибка при загрузке</h1>}
+              {recommendationsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
               {recommendationsFetching && <Spinner/>}
               {recommendations.map(item => (
                 <div key={item.id} className='insidePage__recommendations_card' onClick={() => navigate(`/${dataType}/${item.id}`)}>

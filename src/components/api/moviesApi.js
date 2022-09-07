@@ -28,16 +28,16 @@ export const moviesApi = createApi({
       query: ({page, language}) => `/person/popular?${API_KEY}&page=${page}&language=${language}`
     }),
     getFilmOrSeries: build.query({
-      query: ([type, id]) => `/${type}/${id}?${API_KEY}&language=ru`
+      query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&language=${language}`
     }),
     getActors: build.query({
-      query: ([type, id]) => `/${type}/${id}?${API_KEY}&append_to_response=credits&language=ru`
+      query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&append_to_response=credits&language=${language}`
     }),
     getImages: build.query({
       query: ([type, id]) => `/${type}/${id}/images?${API_KEY}`
     }),
     getRecommendations: build.query({
-      query: ([type, id]) => `/${type}/${id}/recommendations?${API_KEY}&language=ru`
+      query: ([type, id, language]) => `/${type}/${id}/recommendations?${API_KEY}&language=${language}`
     }),
     searchMovieOrTv: build.query({
       query: ([type, keyWords]) => `/search/${type}?${API_KEY}&language=ru&query=${keyWords}`
