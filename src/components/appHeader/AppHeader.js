@@ -79,41 +79,43 @@ const AppHeader = () => {
 
   return (
     <header className='app__header'>
-      <Link className='app__title' to=''>Movies</Link>
-      <button className='app__header_burgerBtn' onClick={activateMenu}></button>
-      <nav className='app__navigation'>
-        <ul>
-          <li>
-            <button className='app__navigation_languageBtn' value="ru" id='ru' onClick={(e) => changeLanguage(e)}>ru</button>
-            <button className='app__navigation_languageBtn' value='en' id='en' onClick={(e) => changeLanguage(e)}>en</button>
-          </li>
-          <li><NavLink 
-                onClick={activateMenu}
-                end
-                className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-                to=''>{translateWord('Главная', 'Home')}</NavLink>
-          </li>
-          <li><NavLink 
-            onClick={activateMenu}
-            end
-            className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-            to='/movie'>{translateWord('Фильмы', 'Movies')}</NavLink>
-          </li>
-          <li><NavLink 
-                onClick={activateMenu}
-                end
-                className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-                to='/tv'>{translateWord('Сериалы', 'TV Shows')}</NavLink>
-          </li>
-          <li><NavLink 
-                onClick={activateMenu}
-                end
-                className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
-                to='/actors'>{translateWord('Актеры', 'People')}</NavLink>
-          </li>
-          {accountButtons()}
-        </ul>
-      </nav>
+      <div className='app__header_container'>
+        <Link className='app__title' to=''>Movies</Link>
+        <button className='app__header_burgerBtn' onClick={activateMenu}></button>
+        <nav className='app__navigation'>
+          <ul>
+            <li>
+              <button className='app__navigation_languageBtn' value="ru" id='ru' onClick={(e) => changeLanguage(e)}>ru</button>
+              <button className='app__navigation_languageBtn' value='en' id='en' onClick={(e) => changeLanguage(e)}>en</button>
+            </li>
+            <li><NavLink 
+                  onClick={activateMenu}
+                  end
+                  className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
+                  to=''>{translateWord('Главная', 'Home')}</NavLink>
+            </li>
+            <li><NavLink 
+              onClick={activateMenu}
+              end
+              className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
+              to='/movie'>{translateWord('Фильмы', 'Movies')}</NavLink>
+            </li>
+            <li><NavLink 
+                  onClick={activateMenu}
+                  end
+                  className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
+                  to='/tv'>{translateWord('Сериалы', 'TV Shows')}</NavLink>
+            </li>
+            <li><NavLink 
+                  onClick={activateMenu}
+                  end
+                  className={({ isActive }) => "" + (isActive ? "app__navigation_selected" : "")}
+                  to='/actors'>{translateWord('Актеры', 'People')}</NavLink>
+            </li>
+            {accountButtons()}
+          </ul>
+        </nav>
+      </div>
     </header>
   )
 }
