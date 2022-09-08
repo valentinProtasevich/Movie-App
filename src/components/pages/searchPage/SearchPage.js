@@ -2,17 +2,21 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useSearchMovieOrTvQuery } from '../../api/moviesApi';
 import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
+import useTranslateWord from '../../../hooks/useTranslateWord';
 
 import './searchPage.scss';
 
 const SearchPage = () => {
   window.scrollTo(0, 0);
+
+  const language = useSelector(state => state.languages.language);
 
   const navigate = useNavigate();
 
@@ -24,7 +28,7 @@ const SearchPage = () => {
     data: movieOrTvObj = {},
     isFetching: movieOrTvFetching, 
     isError: movieOrTvError
-  } = useSearchMovieOrTvQuery([type, keyWords]);
+  } = useSearchMovieOrTvQuery([type, keyWords, language]);
   let results = movieOrTvObj.results ?? [];
 
   useEffect(() => {
@@ -46,6 +50,8 @@ const SearchPage = () => {
     navigate(`/search/${dataSearch.search}`)
   };
 
+  const translateWord = useTranslateWord();
+
   return (
     <>
       <Helmet>
@@ -59,14 +65,14 @@ const SearchPage = () => {
         <form className='searchPage__form' onSubmit={handleSubmit(onSubmit)}>
           <input className="searchPage__form_input"
           {...register("search", { required: true })} 
-          placeholder = 'Найти фильм или сериал...'
+          placeholder = {translateWord('Найти фильм или сериал...', 'Find a movie or TV show...')}
           />
-          <input className="searchPage__form_submit" type="submit" value={'Поиск'} disabled={!isValid}/>
+          <input className="searchPage__form_submit" type="submit" value={translateWord('Поиск', 'Search')} disabled={!isValid}/>
         </form>
 
         <div className='searchPage__flexContainer'>
           <section className='searchPage__types'>
-            <h2>Результаты поиска:</h2>
+            <h2>{translateWord('Результаты поиска:', 'Searching results:')}</h2>
             <ul>
               <li 
                 id='movie'
@@ -74,23 +80,27 @@ const SearchPage = () => {
                   setType(e.target.id);
                   e.target.classList.add('type__active');
                   activateMenu();
-                }}>Фильмы</li>
+                }}>
+                  {translateWord('Фильмы', 'Movies')}
+                </li>
               <li 
                 id='tv'
                 onClick={(e) => {
                   setType(e.target.id);
                   e.target.classList.add('type__active');
                   activateMenu();
-                }}>Сериалы</li>
+                }}>
+                  {translateWord('Сериалы', 'TV shows')}
+                </li>
             </ul>
           </section>
 
           <button className='searchPage__burgerBtn' onClick={activateMenu}></button>
 
           <section className='searchPage__results'>
-            {movieOrTvError && <h1>Произошла ошибка при загрузке</h1>}
+            {movieOrTvError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
             {movieOrTvFetching && <Spinner/>}
-            {results.length === 0 ? <h1>По вашему запросу ничего не найдено.</h1> : null}
+            {results.length === 0 ? <h2>{translateWord('По вашему запросу ничего не найдено.', 'Nothing was found according to your request.')}</h2> : null}
             {results.map(item => (
               <Link key={item.id} to={`/${type}/${item.id}`}>
                 <img 

@@ -7,40 +7,40 @@ export const moviesApi = createApi({
   baseQuery: fetchBaseQuery({baseUrl: 'https://api.themoviedb.org/3'}),
   endpoints: (build) => ({
     getPopularity: build.query({
-      query: () => `/discover/movie?sort_by=popularity.desc&${API_KEY}&language=ru`
+      query: (language) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&language=${language}`
     }),
     getMostPopular: build.query({
-      query: () => `/discover/movie?with_genres=18&primary_release_year=2022&${API_KEY}&language=ru`
+      query: (language) => `/discover/movie?with_genres=18&primary_release_year=2022&${API_KEY}&language=${language}`
     }),
     getFilmsGenres: build.query({
-      query: () => `/genre/movie/list?${API_KEY}&language=ru`
+      query: (language) => `/genre/movie/list?${API_KEY}&language=${language}`
     }),
     getFilmsWithGenre: build.query({
-      query: ({genreId, page}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=ru`
+      query: ({genreId, page, language}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
     }),
     getSeriesGenres: build.query({
-      query: () => `/genre/tv/list?${API_KEY}&language=ru`
+      query: (language) => `/genre/tv/list?${API_KEY}&language=${language}`
     }),
     getSeriesWithGenre: build.query({
-      query: ({genreId, page}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=ru`
+      query: ({genreId, page, language}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
     }),
     getPopularActors: build.query({
-      query: (page) => `/person/popular?${API_KEY}&page=${page}&language=ru`
+      query: ({page, language}) => `/person/popular?${API_KEY}&page=${page}&language=${language}`
     }),
     getFilmOrSeries: build.query({
-      query: ([type, id]) => `/${type}/${id}?${API_KEY}&language=ru`
+      query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&language=${language}`
     }),
     getActors: build.query({
-      query: ([type, id]) => `/${type}/${id}?${API_KEY}&append_to_response=credits&language=ru`
+      query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&append_to_response=credits&language=${language}`
     }),
     getImages: build.query({
       query: ([type, id]) => `/${type}/${id}/images?${API_KEY}`
     }),
     getRecommendations: build.query({
-      query: ([type, id]) => `/${type}/${id}/recommendations?${API_KEY}&language=ru`
+      query: ([type, id, language]) => `/${type}/${id}/recommendations?${API_KEY}&language=${language}`
     }),
     searchMovieOrTv: build.query({
-      query: ([type, keyWords]) => `/search/${type}?${API_KEY}&language=ru&query=${keyWords}`
+      query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
     })
   })
 });

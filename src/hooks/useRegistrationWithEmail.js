@@ -14,14 +14,12 @@ function useRegistrationWithEmail() {
       .then(({user}) => {
         updateProfile(auth.currentUser, {
           displayName: data.fullName, 
-          //photoURL: "https://firebasestorage.googleapis.com/v0/b/astronews-83226.appspot.com/o/avatar.svg?alt=media&token=cf180e62-134d-4d33-94a4-020b1c57806d"
         }).then(() => {
           dispatch(setUser({
             userName: user.displayName,
             email: user.email,
             token: user.accessToken,
             id: user.uid,
-            //userPhotoUrl: user.photoURL,
             provider: 'email',
           }));
           navigate('/');

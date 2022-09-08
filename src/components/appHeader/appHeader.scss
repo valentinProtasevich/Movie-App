@@ -10,10 +10,6 @@
     padding-right: 5rem;
     background-color: $darkBlue;
     color: #ffffff;
-    h1:hover {
-      cursor: pointer;
-      text-decoration: underline;
-    }
     &_burgerBtn {
       display: none;
     }
@@ -22,6 +18,9 @@
     font-weight: 800;
     font-size: 2.4rem;
     line-height: 3.3rem;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   &__navigation {
     &_liMenu {
@@ -44,6 +43,23 @@
     li:hover {
       cursor: pointer;
       text-decoration: underline;
+    }
+    &_languageBtn {
+      margin-right: 1rem;
+      border: 0;
+      font-weight: 600;
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      background-color: transparent;
+      color: #999191;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      &.languageActive {
+        text-decoration: underline;
+        color: #FFFFFF;
+      }
     }
     &_selected {
       border: 1px solid #FFFFFF;

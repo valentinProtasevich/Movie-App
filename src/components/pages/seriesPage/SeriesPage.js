@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
+import { useSelector } from 'react-redux';
 import { CircularProgressbar } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -9,11 +10,14 @@ import getColorRating from "../../../helpers/getColorRating";
 import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
+import useTranslateWord from "../../../hooks/useTranslateWord";
 
 import './seriesPage.scss';
 
 const SeriesPage = () => {
   window.scrollTo(0, 0);
+
+  const language = useSelector(state => state.languages.language);
 
   const [genreId, setGenreId] = useState(10759);
   const [page, setPage] = useState(1);
@@ -22,14 +26,14 @@ const SeriesPage = () => {
     data: genresObj = {},
     isFetching: genresFetching, 
     isError: genresError
-  } = useGetSeriesGenresQuery();
+  } = useGetSeriesGenresQuery(language);
   let genres = genresObj.genres ?? [];
 
   const {
     data: seriesObj ={},
     isFetching: seriesFetching, 
     isError: seriesError
-  } = useGetSeriesWithGenreQuery({genreId, page});
+  } = useGetSeriesWithGenreQuery({genreId, page, language});
   let seriesResults = seriesObj.results ?? [];
 
   console.log(seriesObj);
@@ -51,6 +55,8 @@ const SeriesPage = () => {
     document.querySelector('.seriesPage__burgerBtn').classList.toggle('active');
   }
 
+  const translateWord = useTranslateWord();
+
   return (
     <>
       <Helmet>
@@ -62,9 +68,9 @@ const SeriesPage = () => {
       </Helmet>
       <div className="seriesPage__container">
         <section className="seriesPage__categories">
-          <h2>Жанры</h2>
+          <h2>{translateWord('Жанры', 'Genres')}</h2>
           <ul>
-            {genresError && <h1>Произошла ошибка при загрузке</h1>}
+            {genresError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
             {genresFetching && <Spinner/>}
             {genres.map(item => (
               <li 
@@ -86,9 +92,9 @@ const SeriesPage = () => {
         <button className='seriesPage__burgerBtn' onClick={activateMenu}></button>
 
         <section className="seriesPage__seriesContainer">
-          {seriesError && <h1>Произошла ошибка при загрузке</h1>}
+          {seriesError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
           {seriesFetching && <Spinner/>}
-          <h1>Популярные сериалы</h1>
+          <h1>{translateWord('Популярные сериалы', 'Popular TV shows')}</h1>
           <div className="seriesPage__grid">
             {seriesResults.map(item => (
               <Link to={`/tv/${item.id}`} key={item.id} className='seriesPage__serieCard'>
@@ -118,7 +124,8 @@ const SeriesPage = () => {
                   window.scrollTo(0, 0);
                   setPage(page - 1);
                 }}>
-              Предыдущая страница</button>
+                {translateWord('Предыдущая страница', 'Previous page')}
+              </button>
               <button className="seriesPage__btnContainer_currentPage">{page}</button>
               <button 
                 className="seriesPage__btnContainer_nextPage" 
@@ -126,7 +133,8 @@ const SeriesPage = () => {
                   window.scrollTo(0, 0);
                   setPage(page + 1);
                 }}>
-              Следующая страница</button>
+                {translateWord('Следующая страница', 'Next page')}
+              </button>
           </div>
         </section>
       </div>
