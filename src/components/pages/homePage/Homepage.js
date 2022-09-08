@@ -11,7 +11,6 @@ import { useGetPopularityQuery, useGetMostPopularQuery } from '../../api/moviesA
 import getColorRating from '../../../helpers/getColorRating';
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from '../../../helpers/createDefaultImg';
-import getSlides from '../../../helpers/getSlides';
 import useTranslateWord from '../../../hooks/useTranslateWord';
 
 import './homePage.scss';
@@ -69,27 +68,29 @@ const Homepage = () => {
         </section>
 
         <section className='homePage__filmsSlider'>
-          <SimpleSlider title={translateWord('Что популярно', 'What\'s Popular')} slides={getSlides()}>
+          <SimpleSlider title={translateWord('Что популярно', 'What\'s Popular')}>
             {popularityError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
             {popularityLoading && <Spinner/>}
             {popularityResults.map(item => (
-              <Link to={`/movie/${item.id}`} key={item.id} className='homePage__filmsSlider_cards'>
-                <img 
-                  src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
-                  alt={item.title} 
-                  onError={(e) => {
-                    createDefaultImg(e.target);
-                    e.target.style.display = 'none';
-                  }}/>
-                <div className='homePage__filmsSlider_progress'>
-                  <CircularProgressbar 
-                    value={item.vote_average * 10} 
-                    text={item.vote_average * 10 + '%'}
-                    background={true}
-                    styles={getColorRating(item.vote_average)}/>
+              <div key={item.id} className='homePage__filmsSlider_cards'>
+                <div className='homePage__filmsSlider_cardContainer'>
+                  <img 
+                    src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
+                    alt={item.title} 
+                    onError={(e) => {
+                      createDefaultImg(e.target);
+                      e.target.style.display = 'none';
+                    }}/>
+                  <div className='homePage__filmsSlider_progress'>
+                    <CircularProgressbar 
+                      value={item.vote_average * 10} 
+                      text={item.vote_average * 10 + '%'}
+                      background={true}
+                      styles={getColorRating(item.vote_average)}/>
+                  </div>
+                  <Link to={`/movie/${item.id}`}>{item.title}</Link>
                 </div>
-                <h3>{item.title}</h3>
-              </Link>
+              </div>
             ))}
           </SimpleSlider>
         </section>
