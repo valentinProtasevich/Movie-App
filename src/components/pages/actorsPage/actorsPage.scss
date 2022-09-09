@@ -1,7 +1,17 @@
+.defaultImg {
+  width: 100%;
+  border-top-left-radius: 1.2rem;
+  border-top-right-radius: 1.2rem;
+  content: url(../../../resources/img/noImg.jpg);
+}
+
 .actorsPage {
   &__container {
     display: flex;
+    max-width: 130rem;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-left: 5rem;
@@ -90,6 +100,7 @@
     }
     &__grid {
       grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
     }
   }
 }
