@@ -112,8 +112,10 @@ const SeriesPage = () => {
                         background={true}
                         styles={getColorRating(item.vote_average)}/>
                   </div>
-                  <h3>{item.name}</h3>
-                  <p>{item.first_air_date}</p>
+                  <div className="seriesPage__serieCard_text">
+                    <h3>{item.name}</h3>
+                    <p>{item.first_air_date}</p>
+                  </div>
               </Link>
             ))}
           </div>

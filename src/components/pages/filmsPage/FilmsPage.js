@@ -110,8 +110,10 @@ const FilmsPage = () => {
                       background={true}
                       styles={getColorRating(item.vote_average)}/>
                 </div>
-                <h3>{item.title}</h3>
-                <p>{item.release_date}</p>
+                <div className="filmsPage__filmCard_text">
+                  <h3>{item.title}</h3>
+                  <p>{item.release_date}</p>
+                </div>
               </Link>
             ))}
           </div>

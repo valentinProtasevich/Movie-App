@@ -3,7 +3,16 @@
 .footer {
   &__flex {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $darkBlue;
+  }
+  &__container {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    max-width: 130rem;
+    width: 100%;
     padding-top: 2.5rem;
     padding-bottom: 2.4rem;
     padding-left: 5rem;
@@ -12,7 +21,6 @@
     font-weight: 400;
     font-size: 1.8rem;
     line-height: 2.5rem;
-    background-color: $darkBlue;
     color: #ffffff;
   }
   &__socialContainer {
@@ -23,7 +31,7 @@
 
 @media (max-width: 1023px) {
   .footer {
-    &__flex {
+    &__container {
       padding-left: 2rem;
       padding-right: 2rem;
     }
@@ -32,7 +40,7 @@
 
 @media (max-width: 767px) {
   .footer {
-    &__flex {
+    &__container {
       flex-direction: column;
       align-items: center;
       row-gap: 0.6rem;

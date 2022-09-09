@@ -5,11 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 const SimpleSlider = (props) => {
   const settings = {
     className: '',
-    dots: false,
-    infinite: false,
+    dots: true,
+    infinite: true,
     speed: 500,
-    slidesToShow: props.slides,
-    slidesToScroll: props.slides
+    swipeToSlide: true,
+    variableWidth: true
   };
 
   return (

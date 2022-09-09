@@ -159,7 +159,7 @@ const InsidePage = ({dataType}) => {
               {recommendationsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
               {recommendationsFetching && <Spinner/>}
               {recommendations.map(item => (
-                <div key={item.id} className='insidePage__recommendations_card' onClick={() => navigate(`/${dataType}/${item.id}`)}>
+                <div key={item.id} className='insidePage__recommendations_card'>
                   <img 
                   src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
                   alt={item.title} 
@@ -167,7 +167,7 @@ const InsidePage = ({dataType}) => {
                     createDefaultImg(e.target);
                     e.target.style.display = 'none';
                   }}/>
-                  <h3>{item.title ? item.title : item.name}</h3>
+                  <h3 onClick={() => navigate(`/${dataType}/${item.id}`)}>{item.title ? item.title : item.name}</h3>
                 </div>
               ))}
             </SimpleSlider>

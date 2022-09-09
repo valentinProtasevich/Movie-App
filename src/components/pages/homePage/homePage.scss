@@ -2,7 +2,8 @@
 
 .defaultImg {
   width: 100%;
-  height: 150%;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
   content: url(../../../resources/img/noImg.jpg);
 }
 
@@ -12,6 +13,10 @@
     flex-direction: column;
   }
   &__searchBlock {
+    position: relative;
+    align-self: center;
+    max-width: 130rem;
+    width: 100%;
     height: 36rem;
     padding: 5rem;
     padding-right: 5rem;
@@ -64,64 +69,85 @@
     }
   }
   &__filmsSlider {
-    .slick-slider {
-      display: flex;
-    }
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
+    align-self: center;
+    max-width: 130rem;
+    width: 100%;
     padding-top: 3rem;
     padding-left: 5rem;
-    padding-right: 5em;
+    padding-right: 5rem;
     h2 {
       font-weight: 600;
       font-size: 2.4rem;
+      margin-bottom: 2rem;
     }
     .slick-prev {
       &::before {
         color:black;
+        display: none;
       }
     }
     .slick-next {
       &::before {
         color:black;
+        display: none;
       }
     }
     .slick-track {
       display: flex;
       column-gap: 1rem;
     }
+    .slick-dots {
+      position: relative;
+      bottom: 0;
+      padding-top: 1rem;
+    }
     &_cards {
+      height: 38rem;
       border: 1px solid #e3e3e3;
       box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
       border-radius: 1.5rem;
       &:hover {
-        text-decoration: underline;
+        cursor: pointer;
+      }
+      .defaultImg {
+        height: 30rem;
       }
       img {
         width: 100%;
+        height: 30rem;
         border-top-left-radius: 1.5rem;
         border-top-right-radius: 1.5rem;
       }
-      h3 {
+      a {
+        display: block;
         position: relative;
-        bottom: 2rem;
-        margin-left: 3%;
-        margin-right: 3%;
+        top: 3rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
         font-weight: 700;
         font-size: 1.5rem;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
-    &_progress {
-      width: 15%;
-      height: 15%;
+    &_cardContainer {
+      height: 38rem;
+      width: 20rem;
       position: relative;
-      bottom: 3rem;
-      margin-left: 3%;
-      margin-right: 3%;
+    }
+    &_progress {
+      width: 5rem;
+      height: 5rem;
+      position: absolute;
+      bottom: 5.5rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
     }
   }
   &__mostPopular {
+    align-self: center;
+    max-width: 130rem;
     padding-top: 2rem;
     padding-left: 5rem;
     padding-right: 5rem;
@@ -133,41 +159,51 @@
       padding-top: 2rem;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 3rem;
+      gap: 2rem;
     }
     &_cards {
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      //display: flex;
+      //flex-direction: column;
       border: 1px solid #e3e3e3;
       box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
       border-radius: 1.5rem;
       &:hover {
         text-decoration: underline;
       }
+      .defaultImg {
+        height: calc((100vw - 5rem - (2rem * 4) - 5rem)/ 5 * 1.5);
+        max-height: 33.5rem;
+      }
       img {
+        display: block;
         width: 100%;
+        height: calc((100vw - 5rem - (2rem * 4) - 5rem)/ 5 * 1.5);
+        max-height: 33.5rem;
         border-top-left-radius: 1.5rem;
         border-top-right-radius: 1.5rem;
       }
       h3 {
         position: relative;
-        bottom: 3%;
-        margin-left: 3%;
-        margin-right: 3%;
+        bottom: 1.8rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
         font-weight: 700;
         font-size: 1.6rem;
       }
     }
     &_progress {
-      width: 15%;
-      height: 15%;
+      width: 5rem;
+      height: 5rem;
       position: relative;
-      bottom: 5%;
-      margin-left: 3%;
-      margin-right: 3%;
+      bottom: 2.5rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
     }
   }
   &__about {
+    align-self: center;
+    max-width: 130rem;
     padding-left: 5rem;
     padding-right: 5rem;
     margin-bottom: 4rem;
@@ -194,24 +230,21 @@
       }
     }
     &__filmsSlider {
-      margin-left: 2rem;
-      margin-right: 2em;
-      padding-left: 2rem;
-      padding-right: 2em;
-      &_cards {
-        h3 {
-          bottom: 1rem;
-        }
-      }
-      &_progress {
-        bottom: 1rem;
-      }
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
     &__mostPopular {
       padding-left: 2rem;
       padding-right: 2rem;
       &_grid {
         grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      .defaultImg {
+        height: calc((100vw - 2rem - (1rem * 3) - 2rem)/ 4 * 1.5);
+      }
+      img {
+        height: calc((100vw - 2rem - (1rem * 3) - 2rem)/ 4 * 1.5);
       }
     }
     &__about {
@@ -261,14 +294,6 @@
       h2 {
         font-size: 2.2rem;
       }
-      &_cards {
-        h3 {
-          bottom: 2rem;
-        }
-      }
-      &_progress {
-        bottom: 3rem;
-      }
     }
     &__mostPopular {
       padding: 2.4rem;
@@ -280,6 +305,12 @@
       &_grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+      }
+      .defaultImg {
+        height: auto;
+      }
+      img {
+        height: auto;
       }
     }
     &__about {
