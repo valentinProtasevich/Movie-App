@@ -162,16 +162,24 @@
       gap: 2rem;
     }
     &_cards {
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      //display: flex;
+      //flex-direction: column;
       border: 1px solid #e3e3e3;
       box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
       border-radius: 1.5rem;
       &:hover {
         text-decoration: underline;
       }
+      .defaultImg {
+        height: calc((100vw - 5rem - (2rem * 4) - 5rem)/ 5 * 1.5);
+        max-height: 33.5rem;
+      }
       img {
+        display: block;
         width: 100%;
+        height: calc((100vw - 5rem - (2rem * 4) - 5rem)/ 5 * 1.5);
+        max-height: 33.5rem;
         border-top-left-radius: 1.5rem;
         border-top-right-radius: 1.5rem;
       }
@@ -232,6 +240,12 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 1rem;
       }
+      .defaultImg {
+        height: calc((100vw - 2rem - (1rem * 3) - 2rem)/ 4 * 1.5);
+      }
+      img {
+        height: calc((100vw - 2rem - (1rem * 3) - 2rem)/ 4 * 1.5);
+      }
     }
     &__about {
       margin-top: 2rem;
@@ -291,6 +305,12 @@
       &_grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+      }
+      .defaultImg {
+        height: auto;
+      }
+      img {
+        height: auto;
       }
     }
     &__about {
