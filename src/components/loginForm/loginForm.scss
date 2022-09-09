@@ -5,8 +5,10 @@
     justify-self: end;
     display: grid;
     grid-template-rows: 4.4rem 29.6rem 5.6rem;
-    width: 100%;
+    max-width: 130rem;
     min-height: calc(100vh - 7rem - 8.1rem);
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
     padding-left: 5rem;
