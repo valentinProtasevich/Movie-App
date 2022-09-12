@@ -52,6 +52,7 @@ const SearchPage = () => {
   };
 
   const [searchWord, setSearchWord] = useState('');
+  const [autoCompleteActive, setAutoCompleteActive] = useState();
 
   const {
     currentData: autocompleteMovieOrTvObj = {},
@@ -72,7 +73,16 @@ const SearchPage = () => {
     console.log('debonce');
   }
   const autoComplete = debounce((value) => saveInput(value));
-  
+
+  document.addEventListener('keyup', (e) => {
+    if (e.keyCode === 27) {
+      setAutoCompleteActive(false);
+    }
+  })
+  document.addEventListener('click', () => {
+    setAutoCompleteActive(false);
+  })
+
   const translateWord = useTranslateWord();
 
   return (
@@ -86,7 +96,13 @@ const SearchPage = () => {
       </Helmet>
       <div className='searchPage__container'>
         <section className='searchPage__searchBlock'>
-          <form className='searchPage__form' onSubmit={(e) => onSubmit(e)}>
+          <form 
+            className='searchPage__form' 
+            onSubmit={(e) => onSubmit(e)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setAutoCompleteActive(true)
+            }}>
             <input 
               type="text"
               ref={inputRef}
@@ -102,7 +118,7 @@ const SearchPage = () => {
               value={translateWord('Поиск', 'Search')}
               />
           </form>    
-          <ul className='searchPage__searchBlock_autoComplete'>
+          <ul className={autoCompleteActive ? 'searchPage__searchBlock_autoComplete' : 'searchPage__searchBlock_autoCompleteHidden'}>
             {fiveResults.map(item => (
               <li key={item?.id}>
                 <Link to={`/${type}/${item?.id}`}>{type === 'movie' ? item?.title : item?.name}</Link>

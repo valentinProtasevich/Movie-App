@@ -47,6 +47,9 @@
         }
       }
     }
+    &_autoCompleteHidden {
+      display: none;
+    }
   }
   &__form {
     position: relative;

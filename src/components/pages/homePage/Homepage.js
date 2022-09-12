@@ -52,6 +52,7 @@ const Homepage = () => {
   const translateWord = useTranslateWord();
 
   const [searchWord, setSearchWord] = useState('');
+  const [autoCompleteActive, setAutoCompleteActive] = useState();
 
   const {
     currentData: movieOrTvObj = {},
@@ -72,6 +73,15 @@ const Homepage = () => {
   }
   const autoComplete = debounce((value) => saveInput(value));
 
+  document.addEventListener('keyup', (e) => {
+    if (e.keyCode === 27) {
+      setAutoCompleteActive(false);
+    }
+  })
+  document.addEventListener('click', () => {
+    setAutoCompleteActive(false);
+  })
+
   return (
     <>
       <Helmet>
@@ -87,7 +97,12 @@ const Homepage = () => {
               'Lots of movies, series and actors. Explore now.'
             )}
           </h2>          
-          <form onSubmit={(e) => onSubmit(e)}>
+          <form 
+            onSubmit={(e) => onSubmit(e)} 
+            onClick={(e) => {
+              e.stopPropagation();
+              setAutoCompleteActive(true)
+            }}>
             <input
               type="text"
               ref={inputRef}
@@ -106,7 +121,7 @@ const Homepage = () => {
               value={translateWord('Поиск', 'Search')}
             />
           </form>
-          <ul className='homePage__searchBlock_autoComplete'>
+          <ul className={autoCompleteActive ? 'homePage__searchBlock_autoComplete' : 'homePage__searchBlock_autoCompleteHidden'}>
             {fiveResults.map(item => (
               <li key={item?.id}>
                 <Link to={`/movie/${item?.id}`}>{item?.title}</Link>
