@@ -299,8 +299,8 @@
       }
       &_input {
         font-size: 1.4rem;
-        padding-left: 1rem;
-        padding-right: 6rem;
+        padding-left: 1.7rem;
+        padding-right: 6.4rem;
       }
       &_submit {
         right: 2.4rem;
@@ -309,6 +309,13 @@
         padding-right: 1rem;
         font-size: 1.4rem;
         border-radius: 2rem;
+      }
+      &_autoComplete {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        li {
+          padding-left: 0.5rem;
+        }
       }
     }
     &__filmsSlider {
