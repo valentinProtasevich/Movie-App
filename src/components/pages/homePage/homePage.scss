@@ -326,6 +326,7 @@
       }
     }
     &__mostPopular {
+      width: 100%;
       padding: 2.4rem;
       padding-top: 0;
       padding-bottom: 0;
@@ -337,10 +338,12 @@
         gap: 1rem;
       }
       .defaultImg {
-        height: auto;
+        height: calc((100vw - 2.4rem - 2.4rem) * 1.5);
+        max-height: none;
       }
       img {
-        height: auto;
+        height: calc((100vw - 2.4rem - 2.4rem) * 1.5);
+        max-height: none;
       }
     }
     &__about {
