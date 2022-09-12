@@ -3,19 +3,20 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import SimpleSlider from '../../simpleSlider/SimpleSlider';
 import Spinner from '../../spinner/Spinner';
 import {
   useGetPopularityQuery,
   useGetMostPopularQuery,
-  useSearchMovieOrTvQuery,
+  useAutocompleteMovieOrTvQuery,
 } from '../../api/moviesApi';
 import getColorRating from '../../../helpers/getColorRating';
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from '../../../helpers/createDefaultImg';
 import useTranslateWord from '../../../hooks/useTranslateWord';
+import debounce from '../../../helpers/debounce';
 
 import './homePage.scss';
 
@@ -26,9 +27,12 @@ const Homepage = () => {
 
   const navigate = useNavigate();
 
-  const [formValue, setformValue] = useState('');
-  const onSubmit = () => {
-    navigate(`/search/${formValue}`);
+  const inputRef = useRef();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (inputRef.current.value) {
+      navigate(`/search/${inputRef.current.value}`);
+    }
   };
 
   const {
@@ -51,7 +55,7 @@ const Homepage = () => {
 
   const {
     currentData: movieOrTvObj = {},
-  } = useSearchMovieOrTvQuery(['movie', searchWord, language]);
+  } = useAutocompleteMovieOrTvQuery(['movie', searchWord, language]);
   let results = movieOrTvObj.results ?? [];
   let fiveResults = [];
   if (results.length > 0) {
@@ -61,20 +65,13 @@ const Homepage = () => {
       }
     }
   }
-
-  //Function for debounce
-  const debounce = (func, timeout = 1000) => {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => { func.apply(this, args); }, timeout);
-    };
-  }
-  const saveInput = (e) => {
-      setSearchWord(e);
-  }
-  const autoComplete = debounce((e) => saveInput(e));
   
+  //Function for debounce
+  const saveInput = (value) => {
+    setSearchWord(value);
+  }
+  const autoComplete = debounce((value) => saveInput(value));
+
   return (
     <>
       <Helmet>
@@ -90,10 +87,10 @@ const Homepage = () => {
               'Lots of movies, series and actors. Explore now.'
             )}
           </h2>          
-          <form onSubmit={onSubmit}>
+          <form onSubmit={(e) => onSubmit(e)}>
             <input
               type="text"
-              value={formValue}
+              ref={inputRef}
               className='homePage__searchBlock_input'
               placeholder={translateWord(
                 'Найти фильм...',
@@ -101,7 +98,6 @@ const Homepage = () => {
               )}
               onChange={(e) => {
                 autoComplete(e.target.value);
-                setformValue(e.target.value);
               }}
             />
             <input

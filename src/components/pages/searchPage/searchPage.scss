@@ -22,13 +22,39 @@
     padding-left: 5rem;
     padding-right: 5rem;
   }
+  &__searchBlock {
+    height: 5.3rem;
+    position: relative;
+    &_autoComplete {
+      position: absolute;
+      width: 100%;
+      padding-left: 1.8rem;
+      padding-right: 1.8rem;
+      padding-bottom: 1rem;
+      li {
+        padding: 0.5rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        background-color: #c2bdbd;
+        border-top: 1px solid black;
+        &:hover {
+          cursor: pointer;
+          background-color: #8d8b8b;
+        }
+        a {
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+  }
   &__form {
     position: relative;
     &_input {
       width: 100%;
       padding-top: 1rem;
       padding-bottom: 1rem;
-      padding-left: 1.5rem;
+      padding-left: 2.3rem;
       padding-right: 13rem;
       border-radius: 3rem;
       border: 1px solid gray;
@@ -180,13 +206,15 @@
     &__container {
       padding: 0;
     }
-    &__form {
+    &__searchBlock {
       margin-top: 10rem;
       margin-left: 5rem;
-      margin-right: 5rem;
+      margin-right: 2rem;
+    }
+    &__form {
       &_input {
         font-size: 1.4rem;
-        padding-left: 1rem;
+        padding-left: 2,3rem;
         padding-right: 6.5rem;
       }
       &_submit {
