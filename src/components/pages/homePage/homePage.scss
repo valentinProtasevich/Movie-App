@@ -67,6 +67,34 @@
         cursor: default;
       }
     }
+    &_autoComplete {
+      position: relative;
+      z-index: 1;
+      padding-left: 1.6rem;
+      padding-right: 1.4rem;
+      padding-bottom: 1rem;
+      li {
+        padding-left: 1.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        background-color: #c2bdbd;
+        border-top: 1px solid black;
+        &:hover {
+          cursor: pointer;
+          background-color: #8d8b8b;
+        }
+        a {
+          padding-right: 1.4rem;
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+    &_autoCompleteHidden {
+      display: none;
+    }
   }
   &__filmsSlider {
     align-self: center;
@@ -163,8 +191,6 @@
     }
     &_cards {
       position: relative;
-      //display: flex;
-      //flex-direction: column;
       border: 1px solid #e3e3e3;
       box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
       border-radius: 1.5rem;
@@ -276,8 +302,8 @@
       }
       &_input {
         font-size: 1.4rem;
-        padding-left: 1rem;
-        padding-right: 6rem;
+        padding-left: 1.7rem;
+        padding-right: 6.4rem;
       }
       &_submit {
         right: 2.4rem;
@@ -286,6 +312,13 @@
         padding-right: 1rem;
         font-size: 1.4rem;
         border-radius: 2rem;
+      }
+      &_autoComplete {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        li {
+          padding-left: 0.5rem;
+        }
       }
     }
     &__filmsSlider {
@@ -296,6 +329,7 @@
       }
     }
     &__mostPopular {
+      width: 100%;
       padding: 2.4rem;
       padding-top: 0;
       padding-bottom: 0;
@@ -307,10 +341,12 @@
         gap: 1rem;
       }
       .defaultImg {
-        height: auto;
+        height: calc((100vw - 2.4rem - 2.4rem) * 1.5);
+        max-height: none;
       }
       img {
-        height: auto;
+        height: calc((100vw - 2.4rem - 2.4rem) * 1.5);
+        max-height: none;
       }
     }
     &__about {

@@ -135,7 +135,7 @@ const InsidePage = ({dataType}) => {
         </section>
 
         <section className='insidePage__backdropsGallery'>
-          <h2>{translateWord('Фотогалерея', 'Backdrops')}</h2>
+          <h2>{backdrops.length ? translateWord('Фотогалерея', 'Backdrops') : null}</h2>
           <div className='insidePage__backdropsGallery_grid'>
             {imagesError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
             {imagesFetching && <Spinner/>}

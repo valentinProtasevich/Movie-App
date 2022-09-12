@@ -85,8 +85,20 @@ const AppHeader = () => {
         <nav className='app__navigation'>
           <ul>
             <li>
-              <button className='app__navigation_languageBtn' value="ru" id='ru' onClick={(e) => changeLanguage(e)}>ru</button>
-              <button className='app__navigation_languageBtn' value='en' id='en' onClick={(e) => changeLanguage(e)}>en</button>
+              <button 
+                className='app__navigation_languageBtn' 
+                value="ru" 
+                id='ru' 
+                onClick={(e) => {
+                  changeLanguage(e);
+                }}>ru</button>
+              <button 
+                className='app__navigation_languageBtn' 
+                value='en' 
+                id='en' 
+                onClick={(e) => {
+                  changeLanguage(e);
+                }}>en</button>
             </li>
             <li><NavLink 
                   onClick={activateMenu}

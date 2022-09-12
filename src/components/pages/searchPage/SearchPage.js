@@ -1,15 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useSearchMovieOrTvQuery } from '../../api/moviesApi';
+import { useSearchMovieOrTvQuery, useAutocompleteMovieOrTvQuery } from '../../api/moviesApi';
 import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
 import useTranslateWord from '../../../hooks/useTranslateWord';
+import debounce from '../../../helpers/debounce';
 
 import './searchPage.scss';
 
@@ -43,12 +43,45 @@ const SearchPage = () => {
     document.querySelector('.searchPage__burgerBtn').classList.toggle('active');
   };
 
-  const { register, formState: { isValid }, handleSubmit } = useForm({
-    mode: 'onChange'
-  });
-  const onSubmit = dataSearch => {
-    navigate(`/search/${dataSearch.search}`)
+  const inputRef = useRef();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (inputRef.current.value) {
+      navigate(`/search/${inputRef.current.value}`);
+    }
   };
+
+  const [searchWord, setSearchWord] = useState('');
+  const [autoCompleteActive, setAutoCompleteActive] = useState();
+
+  const {
+    currentData: autocompleteMovieOrTvObj = {},
+  } = useAutocompleteMovieOrTvQuery([type, searchWord, language]);
+  let autocompleteResults = autocompleteMovieOrTvObj.results ?? [];
+  let fiveResults = [];
+  if (autocompleteResults.length > 0) {
+    for(let i = 0; i < 5; i++) {
+      if (autocompleteResults[i]) {
+        fiveResults.push(autocompleteResults[i]);
+      }
+    }
+  }
+
+  //Function for debounce
+  const saveInput = (value) => {
+    setSearchWord(value);
+    console.log('debonce');
+  }
+  const autoComplete = debounce((value) => saveInput(value));
+
+  document.addEventListener('keyup', (e) => {
+    if (e.keyCode === 27) {
+      setAutoCompleteActive(false);
+    }
+  })
+  document.addEventListener('click', () => {
+    setAutoCompleteActive(false);
+  })
 
   const translateWord = useTranslateWord();
 
@@ -62,13 +95,37 @@ const SearchPage = () => {
         <title>Movies: search</title>
       </Helmet>
       <div className='searchPage__container'>
-        <form className='searchPage__form' onSubmit={handleSubmit(onSubmit)}>
-          <input className="searchPage__form_input"
-          {...register("search", { required: true })} 
-          placeholder = {translateWord('Найти фильм или сериал...', 'Find a movie or TV show...')}
-          />
-          <input className="searchPage__form_submit" type="submit" value={translateWord('Поиск', 'Search')} disabled={!isValid}/>
-        </form>
+        <section className='searchPage__searchBlock'>
+          <form 
+            className='searchPage__form' 
+            onSubmit={(e) => onSubmit(e)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setAutoCompleteActive(true)
+            }}>
+            <input 
+              type="text"
+              ref={inputRef}
+              className="searchPage__form_input"
+              placeholder = {translateWord('Найти фильм или сериал...', 'Find a movie or TV show...')}
+              onChange={(e) => {
+                autoComplete(e.target.value);
+              }}
+            />
+            <input 
+              className="searchPage__form_submit" 
+              type="submit" 
+              value={translateWord('Поиск', 'Search')}
+              />
+          </form>    
+          <ul className={autoCompleteActive ? 'searchPage__searchBlock_autoComplete' : 'searchPage__searchBlock_autoCompleteHidden'}>
+            {fiveResults.map(item => (
+              <li key={item?.id}>
+                <Link to={`/${type}/${item?.id}`}>{type === 'movie' ? item?.title : item?.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <div className='searchPage__flexContainer'>
           <section className='searchPage__types'>

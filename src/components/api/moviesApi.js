@@ -41,7 +41,11 @@ export const moviesApi = createApi({
     }),
     searchMovieOrTv: build.query({
       query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
-    })
+    }),
+    autocompleteMovieOrTv: build.query({
+      query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
+    }),
+
   })
 });
 
@@ -56,4 +60,5 @@ export const {useGetPopularityQuery,
               useGetActorsQuery,
               useGetImagesQuery,
               useGetRecommendationsQuery,
-              useSearchMovieOrTvQuery} = moviesApi;
+              useSearchMovieOrTvQuery,
+              useAutocompleteMovieOrTvQuery} = moviesApi;
