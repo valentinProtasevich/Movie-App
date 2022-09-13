@@ -128,7 +128,7 @@ const InsidePage = ({dataType}) => {
                   createDefaultImg(e.target);
                   e.target.style.display = 'none';
                 }}/>
-                <h3>{item.name}</h3>
+                <Link to={`/actors/${item.id}`}>{item.name}</Link>
               </div>
             ))}
           </SimpleSlider>
@@ -167,7 +167,6 @@ const InsidePage = ({dataType}) => {
                   createDefaultImg(e.target);
                   e.target.style.display = 'none';
                 }}/>
-                {/* <h3 onClick={() => navigate(`/${dataType}/${item.id}`)}>{item.title ? item.title : item.name}</h3> */}
                 <Link to={`/${dataType}/${item.id}`}>{item.title ? item.title : item.name}</Link>
               </div>
             ))}
