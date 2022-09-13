@@ -19,6 +19,7 @@
     width: 25%;
     .defaultImg {
       width: 100%;
+      border-radius: 0.5rem;
     }
     img {
       display: block;
@@ -92,8 +93,7 @@
         .defaultImg {
           width: 20rem;
           height: 30rem;
-          border-top-left-radius: 1.5rem;
-          border-top-right-radius: 1.5rem;
+          border-radius: 1.5rem;
         }
         img {
           width: 20rem;
@@ -114,6 +114,38 @@
             text-decoration: underline;
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .actorInsidePage {
+    &__container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .actorInsidePage {
+    &__container {
+      position: relative;
+      flex-direction: column;
+      padding-top: 14rem;
+    }
+    &__facts {
+      width: 100%;
+    }
+    &__biography {
+      width: 100%;
+      h2 {
+        position: absolute;
+        top: 9rem;
+      }
+      h3 {
+        margin-top: 2rem;
       }
     }
   }
