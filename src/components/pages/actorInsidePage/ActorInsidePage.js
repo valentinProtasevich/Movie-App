@@ -76,7 +76,7 @@ const ActorInsidePage = () => {
           <h2>{actorInfoObj.name}</h2>
           <h3>{actorInfoObj.biography ? translateWord('Биография', 'Biography') : null}</h3>
           <p>{actorInfoObj.biography}</p>
-          <h3>{translateWord('Известен за', 'Known For')}</h3>
+          <h3>{translateWord('Известность за', 'Known For')}</h3>
           <div className='actorInsidePage__slider'>
             <SimpleSlider>
               {actorsCreditsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
@@ -90,7 +90,6 @@ const ActorInsidePage = () => {
                     createDefaultImg(e.target);
                     e.target.style.display = 'none';
                   }}/>
-                  {/* <h3 onClick={() => navigate(`/${item.media_type}/${item.id}`)}>{item.title ? item.title : item.name}</h3> */}
                   <Link to={`/${item.media_type}/${item.id}`}>{item.title ? item.title : item.name}</Link>
                 </div>
               ))}
