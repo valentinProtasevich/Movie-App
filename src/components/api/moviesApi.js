@@ -45,7 +45,12 @@ export const moviesApi = createApi({
     autocompleteMovieOrTv: build.query({
       query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
     }),
-
+    getActorInfo: build.query({
+      query: ([id, language]) => `/person/${id}?${API_KEY}&language=${language}`
+    }),
+    getActorsCredits: build.query({
+      query: ([id, language]) => `/person/${id}/combined_credits?${API_KEY}&language=${language}`
+    }),
   })
 });
 
@@ -61,4 +66,6 @@ export const {useGetPopularityQuery,
               useGetImagesQuery,
               useGetRecommendationsQuery,
               useSearchMovieOrTvQuery,
-              useAutocompleteMovieOrTvQuery} = moviesApi;
+              useAutocompleteMovieOrTvQuery,
+              useGetActorInfoQuery,
+              useGetActorsCreditsQuery} = moviesApi;
