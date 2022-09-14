@@ -15,41 +15,74 @@ export const moviesApi = createApi({
     getFilmsGenres: build.query({
       query: (language) => `/genre/movie/list?${API_KEY}&language=${language}`
     }),
+    // getFilmsWithGenre: build.query({
+    //   query: ({genreId, page, language}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
+    // }),
     getFilmsWithGenre: build.query({
-      query: ({genreId, page, language}) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
+      query: (options) => `/discover/movie?sort_by=popularity.desc&${API_KEY}&with_genres=${options.genreId}&page=${options.page}&language=${options.language}`
     }),
     getSeriesGenres: build.query({
       query: (language) => `/genre/tv/list?${API_KEY}&language=${language}`
     }),
+    // getSeriesWithGenre: build.query({
+    //   query: ({genreId, page, language}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
+    // }),
     getSeriesWithGenre: build.query({
-      query: ({genreId, page, language}) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${genreId}&page=${page}&language=${language}`
+      query: (options) => `/discover/tv?sort_by=popularity.desc&${API_KEY}&with_genres=${options.genreId}&page=${options.page}&language=${options.language}`
     }),
+    // getPopularActors: build.query({
+    //   query: ({page, language}) => `/person/popular?${API_KEY}&page=${page}&language=${language}`
+    // }),
     getPopularActors: build.query({
-      query: ({page, language}) => `/person/popular?${API_KEY}&page=${page}&language=${language}`
+      query: (options) => `/person/popular?${API_KEY}&page=${options.page}&language=${options.language}`
     }),
+    // getFilmOrSeries: build.query({
+    //   query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&language=${language}`
+    // }),
     getFilmOrSeries: build.query({
-      query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&language=${language}`
+      query: (options) => `/${options.type}/${options.id}?${API_KEY}&language=${options.language}`
     }),
+    // getActors: build.query({
+    //   query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&append_to_response=credits&language=${language}`
+    // }),
     getActors: build.query({
-      query: ([type, id, language]) => `/${type}/${id}?${API_KEY}&append_to_response=credits&language=${language}`
+      query: (options) => `/${options.type}/${options.id}?${API_KEY}&append_to_response=credits&language=${options.language}`
     }),
+    // getImages: build.query({
+    //   query: ([type, id]) => `/${type}/${id}/images?${API_KEY}`
+    // }),
     getImages: build.query({
-      query: ([type, id]) => `/${type}/${id}/images?${API_KEY}`
+      query: (options) => `/${options.type}/${options.id}/images?${API_KEY}`
     }),
+    // getRecommendations: build.query({
+    //   query: ([type, id, language]) => `/${type}/${id}/recommendations?${API_KEY}&language=${language}`
+    // }),
     getRecommendations: build.query({
-      query: ([type, id, language]) => `/${type}/${id}/recommendations?${API_KEY}&language=${language}`
+      query: (options) => `/${options.type}/${options.id}/recommendations?${API_KEY}&language=${options.language}`
     }),
+    // searchMovieOrTv: build.query({
+    //   query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
+    // }),
     searchMovieOrTv: build.query({
-      query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
+      query: (options) => `/search/${options.type}?${API_KEY}&language=${options.language}&query=${options.keyWords}`
     }),
+    // autocompleteMovieOrTv: build.query({
+    //   query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
+    // }),
     autocompleteMovieOrTv: build.query({
-      query: ([type, keyWords, language]) => `/search/${type}?${API_KEY}&language=${language}&query=${keyWords}`
+      query: (options) => `/search/${options.type}?${API_KEY}&language=${options.language}&query=${options.keyWords}`
     }),
+    // getActorInfo: build.query({
+    //   query: ([id, language]) => `/person/${id}?${API_KEY}&language=${language}`
+    // }),
     getActorInfo: build.query({
-      query: ([id, language]) => `/person/${id}?${API_KEY}&language=${language}`
+      query: (options) => `/person/${options.id}?${API_KEY}&language=${options.language}`
     }),
+    // getActorsCredits: build.query({
+    //   query: ([id, language]) => `/person/${id}/combined_credits?${API_KEY}&language=${language}`
+    // }),
     getActorsCredits: build.query({
-      query: ([id, language]) => `/person/${id}/combined_credits?${API_KEY}&language=${language}`
+      query: (options) => `/person/${options.id}/combined_credits?${API_KEY}&language=${options.language}`
     }),
   })
 });

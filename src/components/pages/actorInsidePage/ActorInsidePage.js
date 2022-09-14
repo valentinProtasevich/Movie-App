@@ -20,20 +20,33 @@ const ActorInsidePage = () => {
 
   const navigate = useNavigate();
 
+  // const {
+  //   data: actorInfoObj = {},
+  //   isFetching: actorInfoFetching, 
+  //   isError: actorInfoError
+  // } = useGetActorInfoQuery([id, language]);
   const {
     data: actorInfoObj = {},
     isFetching: actorInfoFetching, 
     isError: actorInfoError
-  } = useGetActorInfoQuery([id, language]);
+  } = useGetActorInfoQuery({
+    id: id, 
+    language: language,
+  });
 
+  // const {
+  //   data: actorsCreditsObj = {},
+  //   isFetching: actorsCreditsFetching, 
+  //   isError: actorsCreditsError
+  // } = useGetActorsCreditsQuery([id, language]);
   const {
     data: actorsCreditsObj = {},
     isFetching: actorsCreditsFetching, 
     isError: actorsCreditsError
-  } = useGetActorsCreditsQuery([id, language]);
-
-  console.log(actorInfoObj);
-  console.log(actorsCreditsObj);
+  } = useGetActorsCreditsQuery({
+    id: id, 
+    language: language,
+  });
 
   const translateWord = useTranslateWord();
   

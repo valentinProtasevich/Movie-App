@@ -54,9 +54,16 @@ const Homepage = () => {
   const [searchWord, setSearchWord] = useState('');
   const [autoCompleteActive, setAutoCompleteActive] = useState();
 
+  // const {
+  //   currentData: movieOrTvObj = {},
+  // } = useAutocompleteMovieOrTvQuery(['movie', searchWord, language]);
   const {
     currentData: movieOrTvObj = {},
-  } = useAutocompleteMovieOrTvQuery(['movie', searchWord, language]);
+  } = useAutocompleteMovieOrTvQuery({
+    type: 'movie',
+    keyWords: searchWord,
+    language: language,
+  });
   let results = movieOrTvObj.results ?? [];
   let fiveResults = [];
   if (results.length > 0) {

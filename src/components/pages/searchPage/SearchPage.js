@@ -24,11 +24,20 @@ const SearchPage = () => {
 
   const {keyWords} = useParams();
 
+  // const {
+  //   data: movieOrTvObj = {},
+  //   isFetching: movieOrTvFetching, 
+  //   isError: movieOrTvError
+  // } = useSearchMovieOrTvQuery([type, keyWords, language]);
   const {
     data: movieOrTvObj = {},
     isFetching: movieOrTvFetching, 
     isError: movieOrTvError
-  } = useSearchMovieOrTvQuery([type, keyWords, language]);
+  } = useSearchMovieOrTvQuery({
+    type: type, 
+    keyWords: keyWords, 
+    language: language,
+  });
   let results = movieOrTvObj.results ?? [];
 
   useEffect(() => {
@@ -54,9 +63,16 @@ const SearchPage = () => {
   const [searchWord, setSearchWord] = useState('');
   const [autoCompleteActive, setAutoCompleteActive] = useState();
 
+  // const {
+  //   currentData: autocompleteMovieOrTvObj = {},
+  // } = useAutocompleteMovieOrTvQuery([type, searchWord, language]);
   const {
     currentData: autocompleteMovieOrTvObj = {},
-  } = useAutocompleteMovieOrTvQuery([type, searchWord, language]);
+  } = useAutocompleteMovieOrTvQuery({
+    type: type, 
+    keyWords: searchWord, 
+    language: language
+  });
   let autocompleteResults = autocompleteMovieOrTvObj.results ?? [];
   let fiveResults = [];
   if (autocompleteResults.length > 0) {

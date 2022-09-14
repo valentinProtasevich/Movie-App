@@ -35,18 +35,36 @@ const InsidePage = ({dataType}) => {
   //   }
   // }, []);
 
+  // const {
+  //   data: filmOrSerieObj = {},
+  //   isFetching: filmOrSerieFetching, 
+  //   isError: filmOrSerieError
+  // } = useGetFilmOrSeriesQuery([dataType, id, language]);
   const {
     data: filmOrSerieObj = {},
     isFetching: filmOrSerieFetching, 
     isError: filmOrSerieError
-  } = useGetFilmOrSeriesQuery([dataType, id, language]);
+  } = useGetFilmOrSeriesQuery({
+    type: dataType, 
+    id: id, 
+    language: language,
+  });
   const {backdrop_path, poster_path, title, vote_average, overview} = filmOrSerieObj;
 
+  // const {
+  //   data: actorsObj = {},
+  //   isFetching: actorsFetching, 
+  //   isError: actorsError
+  // } = useGetActorsQuery([dataType, id, language]);
   const {
     data: actorsObj = {},
     isFetching: actorsFetching, 
     isError: actorsError
-  } = useGetActorsQuery([dataType, id, language]);
+  } = useGetActorsQuery({
+    type: dataType, 
+    id: id, 
+    language: language
+  });
   let actors = [];
   actorsObj.credits?.cast.forEach((i, index) => {
     if (index <= 19) {
@@ -54,11 +72,19 @@ const InsidePage = ({dataType}) => {
     } 
   });
 
+  // const {
+  //   data: imagesObj = {},
+  //   isFetching: imagesFetching, 
+  //   isError: imagesError
+  // } = useGetImagesQuery([dataType, id]);
   const {
     data: imagesObj = {},
     isFetching: imagesFetching, 
     isError: imagesError
-  } = useGetImagesQuery([dataType, id]);
+  } = useGetImagesQuery({
+    type: dataType, 
+    id: id
+  });
   let backdrops = [];
   imagesObj.backdrops?.forEach((i, index) => {
     if (index <= 9) {
@@ -66,11 +92,20 @@ const InsidePage = ({dataType}) => {
     } 
   });
 
+  // const {
+  //   data: recommendationsObj = {},
+  //   isFetching: recommendationsFetching, 
+  //   isError: recommendationsError
+  // } = useGetRecommendationsQuery([dataType, id, language]);
   const {
     data: recommendationsObj = {},
     isFetching: recommendationsFetching, 
     isError: recommendationsError
-  } = useGetRecommendationsQuery([dataType, id, language]);
+  } = useGetRecommendationsQuery({
+    type: dataType, 
+    id: id, 
+    language: language,
+  });
   let recommendations = recommendationsObj.results ?? [];
 
   const translateWord = useTranslateWord();
