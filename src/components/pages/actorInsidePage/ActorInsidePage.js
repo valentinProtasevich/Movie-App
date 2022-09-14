@@ -47,6 +47,12 @@ const ActorInsidePage = () => {
     id: id, 
     language: language,
   });
+  let credits = [];
+  actorsCreditsObj.cast?.forEach((i, index) => {
+    if (index <= 19) {
+      credits.push(i);
+    } 
+  });
 
   const translateWord = useTranslateWord();
   
@@ -94,7 +100,7 @@ const ActorInsidePage = () => {
             <SimpleSlider>
               {actorsCreditsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
               {actorsCreditsFetching && <Spinner/>}
-              {actorsCreditsObj.cast?.map(item => (
+              {credits.map(item => (
                 <div key={item.id} className='actorInsidePage__slider_card'>
                   <img 
                   src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
