@@ -82,14 +82,8 @@
         align-items: stretch;
         height: 100%;
       }
-      .slick-slide {
-        height: 100%;
-        div {
-          height: 100%;
-        }
-      }
       &_card {
-        width: 20rem;
+        width: 20rem; 
         .defaultImg {
           width: 20rem;
           height: 30rem;
