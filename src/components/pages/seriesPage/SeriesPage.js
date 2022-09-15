@@ -29,11 +29,6 @@ const SeriesPage = () => {
   } = useGetSeriesGenresQuery(language);
   let genres = genresObj.genres ?? [];
 
-  // const {
-  //   data: seriesObj ={},
-  //   isFetching: seriesFetching, 
-  //   isError: seriesError
-  // } = useGetSeriesWithGenreQuery({genreId, page, language});
   const {
     data: seriesObj ={},
     isFetching: seriesFetching, 
