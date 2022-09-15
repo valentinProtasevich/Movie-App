@@ -35,11 +35,6 @@ const InsidePage = ({dataType}) => {
   //   }
   // }, []);
 
-  // const {
-  //   data: filmOrSerieObj = {},
-  //   isFetching: filmOrSerieFetching, 
-  //   isError: filmOrSerieError
-  // } = useGetFilmOrSeriesQuery([dataType, id, language]);
   const {
     data: filmOrSerieObj = {},
     isFetching: filmOrSerieFetching, 
@@ -51,11 +46,6 @@ const InsidePage = ({dataType}) => {
   });
   const {backdrop_path, poster_path, title, vote_average, overview} = filmOrSerieObj;
 
-  // const {
-  //   data: actorsObj = {},
-  //   isFetching: actorsFetching, 
-  //   isError: actorsError
-  // } = useGetActorsQuery([dataType, id, language]);
   const {
     data: actorsObj = {},
     isFetching: actorsFetching, 
@@ -72,11 +62,6 @@ const InsidePage = ({dataType}) => {
     } 
   });
 
-  // const {
-  //   data: imagesObj = {},
-  //   isFetching: imagesFetching, 
-  //   isError: imagesError
-  // } = useGetImagesQuery([dataType, id]);
   const {
     data: imagesObj = {},
     isFetching: imagesFetching, 
@@ -92,11 +77,6 @@ const InsidePage = ({dataType}) => {
     } 
   });
 
-  // const {
-  //   data: recommendationsObj = {},
-  //   isFetching: recommendationsFetching, 
-  //   isError: recommendationsError
-  // } = useGetRecommendationsQuery([dataType, id, language]);
   const {
     data: recommendationsObj = {},
     isFetching: recommendationsFetching, 

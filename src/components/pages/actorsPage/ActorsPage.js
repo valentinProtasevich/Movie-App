@@ -18,11 +18,6 @@ const ActorsPage = () => {
 
   const [page, setPage] = useState(1);
 
-  // const {
-  //   data: actorsObj = {},
-  //   isFetching: actorsFetching, 
-  //   isError: actorsError
-  // } = useGetPopularActorsQuery({page, language});
   const {
     data: actorsObj = {},
     isFetching: actorsFetching, 

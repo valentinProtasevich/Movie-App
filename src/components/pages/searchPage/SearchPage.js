@@ -24,11 +24,6 @@ const SearchPage = () => {
 
   const {keyWords} = useParams();
 
-  // const {
-  //   data: movieOrTvObj = {},
-  //   isFetching: movieOrTvFetching, 
-  //   isError: movieOrTvError
-  // } = useSearchMovieOrTvQuery([type, keyWords, language]);
   const {
     data: movieOrTvObj = {},
     isFetching: movieOrTvFetching, 
@@ -63,9 +58,6 @@ const SearchPage = () => {
   const [searchWord, setSearchWord] = useState('');
   const [autoCompleteActive, setAutoCompleteActive] = useState();
 
-  // const {
-  //   currentData: autocompleteMovieOrTvObj = {},
-  // } = useAutocompleteMovieOrTvQuery([type, searchWord, language]);
   const {
     currentData: autocompleteMovieOrTvObj = {},
   } = useAutocompleteMovieOrTvQuery({

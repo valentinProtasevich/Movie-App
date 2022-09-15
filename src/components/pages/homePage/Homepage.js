@@ -54,9 +54,6 @@ const Homepage = () => {
   const [searchWord, setSearchWord] = useState('');
   const [autoCompleteActive, setAutoCompleteActive] = useState();
 
-  // const {
-  //   currentData: movieOrTvObj = {},
-  // } = useAutocompleteMovieOrTvQuery(['movie', searchWord, language]);
   const {
     currentData: movieOrTvObj = {},
   } = useAutocompleteMovieOrTvQuery({
