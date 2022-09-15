@@ -18,9 +18,6 @@
 
 .homePage {
   &__searchBlock {
-    //display: flex;
-    //justify-content: center;
-    //width: 100%;
     height: 36rem;
     padding-top: 5rem;
     background-color: $darkBlue;
@@ -103,8 +100,6 @@
     }
   }
   &__filmsSlider {
-    //display: flex;
-    //justify-content: center;
     padding-top: 3rem;
     h2 {
       font-weight: 600;
@@ -173,8 +168,6 @@
     }
   }
   &__mostPopular {
-    //display: flex;
-    //justify-content: center;
     padding-top: 2rem;
     h2 {
       font-weight: 600;
@@ -225,8 +218,6 @@
     }
   }
   &__about {
-    //display: flex;
-    //justify-content: center;
     margin-bottom: 4rem;
     h2 {
       margin-top: 1.5rem;
