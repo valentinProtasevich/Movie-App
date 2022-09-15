@@ -14,6 +14,7 @@ const InsidePage = lazy(() => import('../pages/insidePage/InsidePage'));
 const RegistrationPage = lazy(() => import('../pages/registrationPage/RegistrationPage'));
 const LoginPage = lazy(() => import('../pages/loginPage/LoginPage'));
 const SearchPage = lazy(() => import('../pages/searchPage/SearchPage'));
+const ActorInsidePage = lazy(() => import('../pages/actorInsidePage/ActorInsidePage'));
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path='/movie/:id' element={<InsidePage dataType='movie'/>} />
             <Route path='/tv/:id' element={<InsidePage dataType='tv'/>} />
             <Route path='/search/:keyWords' element={<SearchPage/>} />
+            <Route path='/actors/:id' element={<ActorInsidePage/>} />
           </Routes>
         </Suspense>
       </main>

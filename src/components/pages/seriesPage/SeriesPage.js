@@ -29,14 +29,21 @@ const SeriesPage = () => {
   } = useGetSeriesGenresQuery(language);
   let genres = genresObj.genres ?? [];
 
+  // const {
+  //   data: seriesObj ={},
+  //   isFetching: seriesFetching, 
+  //   isError: seriesError
+  // } = useGetSeriesWithGenreQuery({genreId, page, language});
   const {
     data: seriesObj ={},
     isFetching: seriesFetching, 
     isError: seriesError
-  } = useGetSeriesWithGenreQuery({genreId, page, language});
+  } = useGetSeriesWithGenreQuery({
+    genreId: genreId,
+    page: page,
+    language: language,
+  });
   let seriesResults = seriesObj.results ?? [];
-
-  console.log(seriesObj);
 
   useEffect(() => {
     document.querySelectorAll('li').forEach((element) => {

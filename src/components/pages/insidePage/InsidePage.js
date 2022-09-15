@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -39,14 +39,22 @@ const InsidePage = ({dataType}) => {
     data: filmOrSerieObj = {},
     isFetching: filmOrSerieFetching, 
     isError: filmOrSerieError
-  } = useGetFilmOrSeriesQuery([dataType, id, language]);
+  } = useGetFilmOrSeriesQuery({
+    type: dataType, 
+    id: id, 
+    language: language,
+  });
   const {backdrop_path, poster_path, title, vote_average, overview} = filmOrSerieObj;
 
   const {
     data: actorsObj = {},
     isFetching: actorsFetching, 
     isError: actorsError
-  } = useGetActorsQuery([dataType, id, language]);
+  } = useGetActorsQuery({
+    type: dataType, 
+    id: id, 
+    language: language
+  });
   let actors = [];
   actorsObj.credits?.cast.forEach((i, index) => {
     if (index <= 19) {
@@ -58,7 +66,10 @@ const InsidePage = ({dataType}) => {
     data: imagesObj = {},
     isFetching: imagesFetching, 
     isError: imagesError
-  } = useGetImagesQuery([dataType, id]);
+  } = useGetImagesQuery({
+    type: dataType, 
+    id: id
+  });
   let backdrops = [];
   imagesObj.backdrops?.forEach((i, index) => {
     if (index <= 9) {
@@ -70,7 +81,11 @@ const InsidePage = ({dataType}) => {
     data: recommendationsObj = {},
     isFetching: recommendationsFetching, 
     isError: recommendationsError
-  } = useGetRecommendationsQuery([dataType, id, language]);
+  } = useGetRecommendationsQuery({
+    type: dataType, 
+    id: id, 
+    language: language,
+  });
   let recommendations = recommendationsObj.results ?? [];
 
   const translateWord = useTranslateWord();
@@ -128,7 +143,7 @@ const InsidePage = ({dataType}) => {
                   createDefaultImg(e.target);
                   e.target.style.display = 'none';
                 }}/>
-                <h3>{item.name}</h3>
+                <Link to={`/actors/${item.id}`}>{item.name}</Link>
               </div>
             ))}
           </SimpleSlider>
@@ -156,21 +171,21 @@ const InsidePage = ({dataType}) => {
         <section className='insidePage__recommendations'>
           <h2>{recommendations.length ? translateWord('Рекомендации', 'Recommendations') : null}</h2>
           <SimpleSlider slides={getSlides()}>
-              {recommendationsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
-              {recommendationsFetching && <Spinner/>}
-              {recommendations.map(item => (
-                <div key={item.id} className='insidePage__recommendations_card'>
-                  <img 
-                  src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
-                  alt={item.title} 
-                  onError={(e) => {
-                    createDefaultImg(e.target);
-                    e.target.style.display = 'none';
-                  }}/>
-                  <h3 onClick={() => navigate(`/${dataType}/${item.id}`)}>{item.title ? item.title : item.name}</h3>
-                </div>
-              ))}
-            </SimpleSlider>
+            {recommendationsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
+            {recommendationsFetching && <Spinner/>}
+            {recommendations.map(item => (
+              <div key={item.id} className='insidePage__recommendations_card'>
+                <img 
+                src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
+                alt={item.title} 
+                onError={(e) => {
+                  createDefaultImg(e.target);
+                  e.target.style.display = 'none';
+                }}/>
+                <Link to={`/${dataType}/${item.id}`}>{item.title ? item.title : item.name}</Link>
+              </div>
+            ))}
+          </SimpleSlider>
         </section>
       </div>
     </>

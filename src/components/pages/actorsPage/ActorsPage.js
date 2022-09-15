@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import { useSelector } from 'react-redux';
 
@@ -21,9 +22,11 @@ const ActorsPage = () => {
     data: actorsObj = {},
     isFetching: actorsFetching, 
     isError: actorsError
-  } = useGetPopularActorsQuery({page, language});
+  } = useGetPopularActorsQuery({
+    page: page, 
+    language: language,
+  });
   let actors = actorsObj.results ?? [];
-  console.log(actors);
 
   useEffect(() => {
     if (page <= 1) {
@@ -51,7 +54,7 @@ const ActorsPage = () => {
           {actorsError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
           {actorsFetching && <Spinner/>}
           {actors.map(item => (
-            <div key={item.id} className='actorsPage__actorCard'>
+            <Link to={`/actors/${item.id}`} key={item.id} className='actorsPage__actorCard'>
               <img 
                 src={item.profile_path ? 'https://image.tmdb.org/t/p/w500'+ item.profile_path : noImg} 
                 alt={item.name} 
@@ -59,34 +62,34 @@ const ActorsPage = () => {
                 createDefaultImg(e.target);
                 e.target.style.display = 'none';
               }}/>
-              <h2>{item.name}</h2>
+              <h3>{item.name}</h3>
               <ul>
                 {item.known_for.map(i => (
                   <li key={i.id}>{i.title}</li>
                 ))}
               </ul>
-            </div>
+            </Link>
           ))}
         </div>
 
         <div className="actorsPage__btnContainer">
-              <button 
-                className="actorsPage__btnContainer_prevPage" 
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                  setPage(page - 1);
-                }}>
-                {translateWord('Предыдущая страница', 'Previous page')}
-              </button>
-              <button className="actorsPage__btnContainer_currentPage">{page}</button>
-              <button 
-                className="actorsPage__btnContainer_nextPage" 
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                  setPage(page + 1);
-                }}>
-                {translateWord('Следующая страница', 'Next page')}
-              </button>
+          <button 
+            className="actorsPage__btnContainer_prevPage" 
+            onClick={() => {
+              window.scrollTo(0, 0);
+              setPage(page - 1);
+            }}>
+            {translateWord('Предыдущая страница', 'Previous page')}
+          </button>
+          <button className="actorsPage__btnContainer_currentPage">{page}</button>
+          <button 
+            className="actorsPage__btnContainer_nextPage" 
+            onClick={() => {
+              window.scrollTo(0, 0);
+              setPage(page + 1);
+            }}>
+            {translateWord('Следующая страница', 'Next page')}
+          </button>
           </div>
       </div>
     </>

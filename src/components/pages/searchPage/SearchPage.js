@@ -28,7 +28,11 @@ const SearchPage = () => {
     data: movieOrTvObj = {},
     isFetching: movieOrTvFetching, 
     isError: movieOrTvError
-  } = useSearchMovieOrTvQuery([type, keyWords, language]);
+  } = useSearchMovieOrTvQuery({
+    type: type, 
+    keyWords: keyWords, 
+    language: language,
+  });
   let results = movieOrTvObj.results ?? [];
 
   useEffect(() => {
@@ -56,7 +60,11 @@ const SearchPage = () => {
 
   const {
     currentData: autocompleteMovieOrTvObj = {},
-  } = useAutocompleteMovieOrTvQuery([type, searchWord, language]);
+  } = useAutocompleteMovieOrTvQuery({
+    type: type, 
+    keyWords: searchWord, 
+    language: language
+  });
   let autocompleteResults = autocompleteMovieOrTvObj.results ?? [];
   let fiveResults = [];
   if (autocompleteResults.length > 0) {

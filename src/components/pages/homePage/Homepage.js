@@ -56,7 +56,11 @@ const Homepage = () => {
 
   const {
     currentData: movieOrTvObj = {},
-  } = useAutocompleteMovieOrTvQuery(['movie', searchWord, language]);
+  } = useAutocompleteMovieOrTvQuery({
+    type: 'movie',
+    keyWords: searchWord,
+    language: language,
+  });
   let results = movieOrTvObj.results ?? [];
   let fiveResults = [];
   if (results.length > 0) {

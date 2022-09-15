@@ -33,7 +33,11 @@ const FilmsPage = () => {
     data: filmsObj ={},
     isFetching: filmsFetching, 
     isError: filmsError
-  } = useGetFilmsWithGenreQuery({genreId, page, language});
+  } = useGetFilmsWithGenreQuery({
+    genreId: genreId,
+    page: page,
+    language: language,
+  });
   let filmsResults = filmsObj.results ?? [];
 
   useEffect(() => {
