@@ -7,21 +7,26 @@
   content: url(../../../resources/img/noImg.jpg);
 }
 
+.container {
+  max-width: 130rem;
+  width: 100%;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .homePage {
-  &__container {
-    display: flex;
-    flex-direction: column;
-  }
   &__searchBlock {
-    position: relative;
-    align-self: center;
-    max-width: 130rem;
-    width: 100%;
+    //display: flex;
+    //justify-content: center;
+    //width: 100%;
     height: 36rem;
-    padding: 5rem;
-    padding-right: 5rem;
+    padding-top: 5rem;
     background-color: $darkBlue;
     background-image: url('../../../resources/img/white-walker.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     h1 {
       font-weight: 700;
       font-size: 4.8rem;
@@ -34,6 +39,7 @@
     }
     form {
       margin-top: 12rem;
+      position: relative;
     }
     &_input {
       width: 100%;
@@ -48,7 +54,7 @@
     }
     &_submit {
       position: absolute;
-      right: 5rem;
+      right: 0rem;
       width: 12rem;
       padding-top: 1rem;
       padding-bottom: 1rem;
@@ -97,12 +103,9 @@
     }
   }
   &__filmsSlider {
-    align-self: center;
-    max-width: 130rem;
-    width: 100%;
+    //display: flex;
+    //justify-content: center;
     padding-top: 3rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
     h2 {
       font-weight: 600;
       font-size: 2.4rem;
@@ -130,7 +133,6 @@
       padding-top: 1rem;
     }
     &_cards {
-      //height: 38rem;
       &:hover {
         cursor: pointer;
       }
@@ -171,11 +173,9 @@
     }
   }
   &__mostPopular {
-    align-self: center;
-    max-width: 130rem;
+    //display: flex;
+    //justify-content: center;
     padding-top: 2rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
     h2 {
       font-weight: 600;
       font-size: 2.4rem;
@@ -225,10 +225,8 @@
     }
   }
   &__about {
-    align-self: center;
-    max-width: 130rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    //display: flex;
+    //justify-content: center;
     margin-bottom: 4rem;
     h2 {
       margin-top: 1.5rem;
@@ -244,21 +242,16 @@
 }
 
 @media (max-width: 1023px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   .homePage {
-    &__searchBlock {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      &_submit {
-        right: 2rem;
-      }
-    }
     &__filmsSlider {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
     &__mostPopular {
-      padding-left: 2rem;
-      padding-right: 2rem;
       &_grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 1rem;
@@ -272,20 +265,19 @@
     }
     &__about {
       margin-top: 2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
     }
   }
 }
 
 @media (max-width: 767px) {
+  .container {
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
   .homePage {
-    &__container {
-      padding-top: 8rem;
-    }
     &__searchBlock {
+      margin-top: 8rem;
       height: 25rem;
-      padding: 2.4rem;
       padding-top: 2rem;
       h1 {
         font-size: 2.8rem;
@@ -303,7 +295,6 @@
         padding-right: 6.4rem;
       }
       &_submit {
-        right: 2.4rem;
         width: 6rem;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -319,17 +310,11 @@
       }
     }
     &__filmsSlider {
-      padding: 2.6rem;
-      padding-top: 2rem;
       h2 {
         font-size: 2.2rem;
       }
     }
     &__mostPopular {
-      width: 100%;
-      padding: 2.4rem;
-      padding-top: 0;
-      padding-bottom: 0;
       h2 {
         font-size: 2.2rem;
       }
@@ -347,8 +332,6 @@
       }
     }
     &__about {
-      padding: 2.4rem;
-      padding-top: 0;
       margin-bottom: 1rem;
       h2 {
         margin-top: 0;

@@ -92,8 +92,8 @@ const Homepage = () => {
         <meta name='description' content='Movies information portal' />
         <title>Movies</title>
       </Helmet>
-      <div className='homePage__container'>
-        <section className='homePage__searchBlock'>
+      <section className='homePage__searchBlock'>
+        <div className='container'>
           <h1>{translateWord('Добро пожаловать!', 'Welcome!')}</h1>
           <h2>
             {translateWord(
@@ -132,9 +132,11 @@ const Homepage = () => {
               </li>
             ))}
           </ul>
-        </section>
+        </div>
+      </section>
 
-        <section className='homePage__filmsSlider'>
+      <section className='homePage__filmsSlider'>
+        <div className='container'>
           <SimpleSlider
             title={translateWord('Что популярно', "What's Popular")}
           >
@@ -175,9 +177,11 @@ const Homepage = () => {
               </div>
             ))}
           </SimpleSlider>
-        </section>
+        </div>
+      </section>
 
-        <section className='homePage__mostPopular'>
+      <section className='homePage__mostPopular'>
+        <div className='container'>
           <h2>
             {translateWord(
               'Лучшие фильмы этого года',
@@ -212,7 +216,7 @@ const Homepage = () => {
                     e.target.style.display = 'none';
                   }}
                 />
-                <div className='homePage__mostPopular_progress'>
+                <div className='homePage__mostPopular_progress container'>
                   <CircularProgressbar
                     value={item.vote_average * 10}
                     text={item.vote_average * 10 + '%'}
@@ -224,9 +228,11 @@ const Homepage = () => {
               </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className='homePage__about'>
+      <section className='homePage__about'>
+        <div className='container'>
           <h2>
             {translateWord(
               'Смотреть фильмы в HD онлайн',
@@ -259,9 +265,9 @@ const Homepage = () => {
               'К счастью наших посетителей, наш кинотеатр предлагает смотреть любимые фильмы и сериалы на мобильных устройствах - прямо со своего смартфона либо планшета под управлением iPhone, iPad или Android, находясь в любой точке мира! И прямо сейчас мы готовы предложить тебе воспользоваться всеми широкими возможностями сайта и перейти к сеансу онлайн просмотра лучших картин в привлекательном для глаз в HD качестве. Желаем тебе получить море удовольствий от самого массового и популярного вида искусства!',
               'Fortunately for our visitors, our cinema offers to watch your favorite movies and series on mobile devices - directly from your smartphone or tablet running iPhone, iPad or Android, from anywhere in the world! And right now we are ready to offer you to take advantage of all the wide possibilities of the site and go to the online viewing session of the best pictures in eye-catching HD quality. We wish you to get a lot of pleasure from the most massive and popular art form!'
             )}
-          </p>
-        </section>
-      </div>
+          </p>         
+        </div>
+      </section>
     </>
   );
 };
