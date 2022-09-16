@@ -104,85 +104,89 @@ const SearchPage = () => {
       </Helmet>
       <div className='searchPage__container'>
         <section className='searchPage__searchBlock'>
-          <form 
-            className='searchPage__form' 
-            onSubmit={(e) => onSubmit(e)}
-            onClick={(e) => {
-              e.stopPropagation();
-              setAutoCompleteActive(true)
-            }}>
-            <input 
-              type="text"
-              ref={inputRef}
-              className="searchPage__form_input"
-              placeholder = {translateWord('Найти фильм или сериал...', 'Find a movie or TV show...')}
-              onChange={(e) => {
-                autoComplete(e.target.value);
-              }}
-            />
-            <input 
-              className="searchPage__form_submit" 
-              type="submit" 
-              value={translateWord('Поиск', 'Search')}
+          <div className='container'>
+            <form 
+              className='searchPage__form' 
+              onSubmit={(e) => onSubmit(e)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setAutoCompleteActive(true)
+              }}>
+              <input 
+                type="text"
+                ref={inputRef}
+                className="searchPage__form_input"
+                placeholder = {translateWord('Найти фильм или сериал...', 'Find a movie or TV show...')}
+                onChange={(e) => {
+                  autoComplete(e.target.value);
+                }}
               />
-          </form>    
-          <ul className={autoCompleteActive ? 'searchPage__searchBlock_autoComplete' : 'searchPage__searchBlock_autoCompleteHidden'}>
-            {fiveResults.map(item => (
-              <li key={item?.id}>
-                <Link to={`/${type}/${item?.id}`}>{type === 'movie' ? item?.title : item?.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <div className='searchPage__flexContainer'>
-          <section className='searchPage__types'>
-            <h2>{translateWord('Результаты поиска:', 'Searching results:')}</h2>
-            <ul>
-              <li 
-                id='movie'
-                onClick={(e) => {
-                  setType(e.target.id);
-                  e.target.classList.add('type__active');
-                  activateMenu();
-                }}>
-                  {translateWord('Фильмы', 'Movies')}
+              <input 
+                className="searchPage__form_submit" 
+                type="submit" 
+                value={translateWord('Поиск', 'Search')}
+                />
+            </form>    
+            <ul className={autoCompleteActive ? 'searchPage__searchBlock_autoComplete' : 'searchPage__searchBlock_autoCompleteHidden'}>
+              {fiveResults.map(item => (
+                <li key={item?.id}>
+                  <Link to={`/${type}/${item?.id}`}>{type === 'movie' ? item?.title : item?.name}</Link>
                 </li>
-              <li 
-                id='tv'
-                onClick={(e) => {
-                  setType(e.target.id);
-                  e.target.classList.add('type__active');
-                  activateMenu();
-                }}>
-                  {translateWord('Сериалы', 'TV shows')}
-                </li>
+              ))}
             </ul>
-          </section>
+          </div>
+        </section>
+        
+        <div  className='container'>
+          <div className='searchPage__flexContainer'>
+            <section className='searchPage__types'>
+              <h2>{translateWord('Результаты поиска:', 'Searching results:')}</h2>
+              <ul>
+                <li 
+                  id='movie'
+                  onClick={(e) => {
+                    setType(e.target.id);
+                    e.target.classList.add('type__active');
+                    activateMenu();
+                  }}>
+                    {translateWord('Фильмы', 'Movies')}
+                  </li>
+                <li 
+                  id='tv'
+                  onClick={(e) => {
+                    setType(e.target.id);
+                    e.target.classList.add('type__active');
+                    activateMenu();
+                  }}>
+                    {translateWord('Сериалы', 'TV shows')}
+                  </li>
+              </ul>
+            </section>
 
-          <button className='searchPage__burgerBtn' onClick={activateMenu}></button>
+            <button className='searchPage__burgerBtn' onClick={activateMenu}></button>
 
-          <section className='searchPage__results'>
-            {movieOrTvError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
-            {movieOrTvFetching && <Spinner/>}
-            {results.length === 0 ? <h2>{translateWord('По вашему запросу ничего не найдено.', 'Nothing was found according to your request.')}</h2> : null}
-            {results.map(item => (
-              <Link key={item.id} to={`/${type}/${item.id}`}>
-                <img 
-                  src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
-                  alt={item.title} 
-                  onError={(e) => {
-                  createDefaultImg(e.target);
-                  e.target.style.display = 'none';
-                }}/>
-                <div className='searchPage__results_textBlock'>
-                  <h3>{type === 'movie' ? item.title : item.name}</h3>
-                  <p className='searchPage__results_date'>{type === 'movie' ? item.release_date : item.first_air_date}</p>
-                  <p className='searchPage__results_overview'>{item.overview}</p>
-                </div>
-              </Link>
-            ))}
-          </section>
+            <section className='searchPage__results'>
+              {movieOrTvError && <h2>{translateWord('Произошла ошибка при загрузке', 'An error occurred while loading')}</h2>}
+              {movieOrTvFetching && <Spinner/>}
+              {results.length === 0 ? <h2>{translateWord('По вашему запросу ничего не найдено.', 'Nothing was found according to your request.')}</h2> : null}
+              {results.map(item => (
+                <Link key={item.id} to={`/${type}/${item.id}`}>
+                  <img 
+                    src={item.poster_path ? 'https://image.tmdb.org/t/p/w500'+ item.poster_path : noImg} 
+                    alt={item.title} 
+                    onError={(e) => {
+                    createDefaultImg(e.target);
+                    e.target.style.display = 'none';
+                  }}/>
+                  <div className='searchPage__results_textBlock'>
+                    <h3>{type === 'movie' ? item.title : item.name}</h3>
+                    <p className='searchPage__results_date'>{type === 'movie' ? item.release_date : item.first_air_date}</p>
+                    <p className='searchPage__results_overview'>{item.overview}</p>
+                  </div>
+                </Link>
+              ))}
+            </section>
+          </div>
         </div>
       </div>
     </>

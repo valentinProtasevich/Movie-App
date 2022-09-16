@@ -8,22 +8,23 @@
   content: url(../../../resources/img/noImg.jpg);
 }
 
+.container {
+  max-width: 130rem;
+  width: 100%;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .searchPage {
   &__container {
-    max-width: 130rem;
     min-height: calc(100vh - 7rem - 8.1rem);
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-    margin-left: auto;
-    margin-right: auto;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
   }
   &__searchBlock {
-    height: 5.3rem;
+    height: 4.3rem;
     position: relative;
     &_autoComplete {
       position: absolute;
@@ -89,6 +90,7 @@
   &__flexContainer {
     display: flex;
     column-gap: 2rem;
+    padding-top: 2rem;
   }
   &__types {
     width: 15%;
@@ -177,11 +179,11 @@
 }
 
 @media (max-width: 1023px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   .searchPage {
-    &__container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
     &__flexContainer {
       column-gap: 1rem;
     }
@@ -231,6 +233,7 @@
     &__types {
       position: fixed;
       top: 8rem;
+      left: 0;
       z-index: 1;
       width: 100vw;
       height: 100vh;
@@ -283,8 +286,6 @@
     }
     &__results {
       width: 100%;
-      padding-left: 2rem;
-      padding-right: 2rem;
       padding-bottom: 2rem;
       a {
         flex-direction: column;
