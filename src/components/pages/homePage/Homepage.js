@@ -219,7 +219,7 @@ const Homepage = () => {
                     e.target.style.display = 'none';
                   }}
                 />
-                <div className='homePage__mostPopular_progress container'>
+                <div className='homePage__mostPopular_progress'>
                   <CircularProgressbar
                     value={item.vote_average * 10}
                     text={item.vote_average * 10 + '%'}
