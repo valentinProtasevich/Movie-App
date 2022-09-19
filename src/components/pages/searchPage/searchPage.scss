@@ -24,69 +24,89 @@
     padding-bottom: 2rem;
   }
   &__searchBlock {
-    height: 4.3rem;
+    height: 6.3rem;
     position: relative;
-    &_autoComplete {
-      position: absolute;
-      width: 100%;
-      padding-left: 1.8rem;
-      padding-right: 1.8rem;
-      padding-bottom: 1rem;
-      li {
-        padding: 0.5rem;
-        font-weight: 700;
-        font-size: 1.5rem;
-        background-color: #c2bdbd;
-        border-top: 1px solid black;
-        &:hover {
-          cursor: pointer;
-          background-color: #8d8b8b;
-        }
-        a {
-          display: inline-block;
-          width: 100%;
-        }
+    .MuiAutocomplete-root {
+      legend {
+        display: none;
       }
     }
-    &_autoCompleteHidden {
+    .MuiInputLabel-root {
+      font-weight: 400;
+      font-size: 1.8rem;
+    }
+    .MuiInputLabel-root.Mui-focused {
       display: none;
     }
-  }
-  &__form {
-    position: relative;
-    &_input {
-      width: 100%;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      padding-left: 2.3rem;
-      padding-right: 13rem;
-      border-radius: 3rem;
-      border: 1px solid gray;
+    .MuiInputBase-input {
       font-weight: 400;
       font-size: 1.8rem;
     }
-    &_submit {
-      position: absolute;
-      right: 0rem;
-      width: 12rem;
-      padding-top: 1.1rem;
-      padding-bottom: 1.1rem;
-      padding-left: 3rem;
-      padding-right: 3rem;
-      border: 0;
-      border-radius: 3rem;
-      font-weight: 400;
-      font-size: 1.8rem;
-      background: linear-gradient(to right, $lightGreen, $lightBlue);
-      color: #FFFFFF;
-      &:hover {
-        cursor: pointer;
-      }
-      &:disabled {
-        cursor: default;
-      }
+    .MuiAutocomplete-endAdornment {
+      top: calc(50% - 10px);
     }
+    // &_autoComplete {
+    //   position: absolute;
+    //   width: 100%;
+    //   padding-left: 1.8rem;
+    //   padding-right: 1.8rem;
+    //   padding-bottom: 1rem;
+    //   li {
+    //     padding: 0.5rem;
+    //     font-weight: 700;
+    //     font-size: 1.5rem;
+    //     background-color: #c2bdbd;
+    //     border-top: 1px solid black;
+    //     &:hover {
+    //       cursor: pointer;
+    //       background-color: #8d8b8b;
+    //     }
+    //     a {
+    //       display: inline-block;
+    //       width: 100%;
+    //     }
+    //   }
+    // }
+    // &_autoCompleteHidden {
+    //   display: none;
+    // }
   }
+
+  // &__form {
+  //   position: relative;
+  //   &_input {
+  //     width: 100%;
+  //     padding-top: 1rem;
+  //     padding-bottom: 1rem;
+  //     padding-left: 2.3rem;
+  //     padding-right: 13rem;
+  //     border-radius: 3rem;
+  //     border: 1px solid gray;
+  //     font-weight: 400;
+  //     font-size: 1.8rem;
+  //   }
+  //   &_submit {
+  //     position: absolute;
+  //     right: 0rem;
+  //     width: 12rem;
+  //     padding-top: 1.1rem;
+  //     padding-bottom: 1.1rem;
+  //     padding-left: 3rem;
+  //     padding-right: 3rem;
+  //     border: 0;
+  //     border-radius: 3rem;
+  //     font-weight: 400;
+  //     font-size: 1.8rem;
+  //     background: linear-gradient(to right, $lightGreen, $lightBlue);
+  //     color: #FFFFFF;
+  //     &:hover {
+  //       cursor: pointer;
+  //     }
+  //     &:disabled {
+  //       cursor: default;
+  //     }
+  //   }
+  // }
   &__flexContainer {
     display: flex;
     column-gap: 2rem;
@@ -213,23 +233,23 @@
     }
     &__searchBlock {
       margin-top: 10rem;
-      margin-left: 5rem;
-      margin-right: 2rem;
+      margin-left: 3.2rem;
+      //margin-right: 2rem;
     }
-    &__form {
-      &_input {
-        font-size: 1.4rem;
-        padding-left: 2,3rem;
-        padding-right: 6.5rem;
-      }
-      &_submit {
-        width: 6rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 1.4rem;
-        border-radius: 2rem;
-      }
-    }
+    // &__form {
+    //   &_input {
+    //     font-size: 1.4rem;
+    //     padding-left: 2,3rem;
+    //     padding-right: 6.5rem;
+    //   }
+    //   &_submit {
+    //     width: 6rem;
+    //     padding-left: 1rem;
+    //     padding-right: 1rem;
+    //     font-size: 1.4rem;
+    //     border-radius: 2rem;
+    //   }
+    // }
     &__types {
       position: fixed;
       top: 8rem;
@@ -247,7 +267,7 @@
         transform: translateX(0);
       }
       h2 {
-        margin-top: 3rem;
+        margin-top: 3.8rem;
         margin-bottom: 2rem;
         padding: 0;
         background-color: transparent;
@@ -268,7 +288,7 @@
     &__burgerBtn {
       position: absolute;
       left: 2rem;
-      top: 11.1rem;
+      top: 12.1rem;
       z-index: 1;
       display: block;
       width: 1.8rem;

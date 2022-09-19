@@ -74,7 +74,7 @@ export default function NewAutocomplete() {
       id="combo-box-demo"
       options={options}
       sx={{ width: '100%' }}
-      renderInput={(params) => <TextField {...params} label={translateWord('Найти фильм или сериал', 'Find a movie or a tv')} />}
+      renderInput={(params) => <TextField {...params} label={translateWord('Найти фильм, сериал', 'Find a movie, a tv')} />}
     />
   );
 }
