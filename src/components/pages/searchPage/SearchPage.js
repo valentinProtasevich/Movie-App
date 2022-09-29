@@ -9,7 +9,8 @@ import Spinner from "../../spinner/Spinner";
 import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from "../../../helpers/createDefaultImg";
 import useTranslateWord from '../../../hooks/useTranslateWord';
-import debounce from '../../../helpers/debounce';
+//import debounce from '../../../helpers/debounce';
+import NewAutocomplete from '../../autocomplete/NewAutocomplete';
 
 import './searchPage.scss';
 
@@ -55,41 +56,41 @@ const SearchPage = () => {
     }
   };
 
-  const [searchWord, setSearchWord] = useState('');
-  const [autoCompleteActive, setAutoCompleteActive] = useState();
+  // const [searchWord, setSearchWord] = useState('');
+  // const [autoCompleteActive, setAutoCompleteActive] = useState();
 
-  const {
-    currentData: autocompleteMovieOrTvObj = {},
-  } = useAutocompleteMovieOrTvQuery({
-    type: type, 
-    keyWords: searchWord, 
-    language: language
-  });
-  let autocompleteResults = autocompleteMovieOrTvObj.results ?? [];
-  let fiveResults = [];
-  if (autocompleteResults.length > 0) {
-    for(let i = 0; i < 5; i++) {
-      if (autocompleteResults[i]) {
-        fiveResults.push(autocompleteResults[i]);
-      }
-    }
-  }
+  // const {
+  //   currentData: autocompleteMovieOrTvObj = {},
+  // } = useAutocompleteMovieOrTvQuery({
+  //   type: type, 
+  //   keyWords: searchWord, 
+  //   language: language
+  // });
+  // let autocompleteResults = autocompleteMovieOrTvObj.results ?? [];
+  // let fiveResults = [];
+  // if (autocompleteResults.length > 0) {
+  //   for(let i = 0; i < 5; i++) {
+  //     if (autocompleteResults[i]) {
+  //       fiveResults.push(autocompleteResults[i]);
+  //     }
+  //   }
+  // }
 
   //Function for debounce
-  const saveInput = (value) => {
-    setSearchWord(value);
-    console.log('debonce');
-  }
-  const autoComplete = debounce((value) => saveInput(value));
+  // const saveInput = (value) => {
+  //   setSearchWord(value);
+  //   console.log('debonce');
+  // }
+  // const autoComplete = debounce((value) => saveInput(value));
 
-  document.addEventListener('keyup', (e) => {
-    if (e.keyCode === 27) {
-      setAutoCompleteActive(false);
-    }
-  })
-  document.addEventListener('click', () => {
-    setAutoCompleteActive(false);
-  })
+  // document.addEventListener('keyup', (e) => {
+  //   if (e.keyCode === 27) {
+  //     setAutoCompleteActive(false);
+  //   }
+  // })
+  // document.addEventListener('click', () => {
+  //   setAutoCompleteActive(false);
+  // })
 
   const translateWord = useTranslateWord();
 
@@ -105,7 +106,8 @@ const SearchPage = () => {
       <div className='searchPage__container'>
         <section className='searchPage__searchBlock'>
           <div className='container'>
-            <form 
+            <NewAutocomplete/>
+            {/* <form 
               className='searchPage__form' 
               onSubmit={(e) => onSubmit(e)}
               onClick={(e) => {
@@ -133,7 +135,7 @@ const SearchPage = () => {
                   <Link to={`/${type}/${item?.id}`}>{type === 'movie' ? item?.title : item?.name}</Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         </section>
         

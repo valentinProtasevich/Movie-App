@@ -34,70 +34,97 @@
       font-size: 3.2rem;
       color: #FFFFFF;
     }
-    form {
-      margin-top: 12rem;
-      position: relative;
+    .MuiAutocomplete-root {
+      margin-top: 8rem;
+      fieldset {
+        display: none;
+      }
     }
-    &_input {
-      width: 100%;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      padding-left: 3rem;
-      padding-right: 15rem;
-      border-radius: 3rem;
-      border: 0;
+    .MuiInputLabel-root {
       font-weight: 400;
       font-size: 1.8rem;
     }
-    &_submit {
-      position: absolute;
-      right: 0rem;
-      width: 12rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      padding-left: 3rem;
-      padding-right: 3rem;
-      border: 0;
-      border-radius: 3rem;
-      font-weight: 400;
-      font-size: 1.8rem;
-      background: linear-gradient(to right, $lightGreen, $lightBlue);
-      color: #FFFFFF;
-      &:hover {
-        cursor: pointer;
-      }
-      &:disabled {
-        cursor: default;
-      }
-    }
-    &_autoComplete {
-      position: relative;
-      z-index: 1;
-      padding-left: 1.6rem;
-      padding-right: 1.4rem;
-      padding-bottom: 1rem;
-      li {
-        padding-left: 1.5rem;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        font-weight: 700;
-        font-size: 1.5rem;
-        background-color: #c2bdbd;
-        border-top: 1px solid black;
-        &:hover {
-          cursor: pointer;
-          background-color: #8d8b8b;
-        }
-        a {
-          padding-right: 1.4rem;
-          display: inline-block;
-          width: 100%;
-        }
-      }
-    }
-    &_autoCompleteHidden {
+    .MuiInputLabel-root.Mui-focused {
       display: none;
     }
+    .MuiInputBase-root {
+      background-color: #FFFFFF;
+    }
+    .MuiInputBase-input {
+      font-weight: 400;
+      font-size: 1.8rem;
+    }
+    .MuiTextField-root {
+      font-weight: 400;
+      font-size: 1.8rem;
+    }
+    .MuiAutocomplete-endAdornment {
+      top: calc(50% - 10px);
+    }
+    // form {
+    //   margin-top: 12rem;
+    //   position: relative;
+    // }
+    // &_input {
+    //   width: 100%;
+    //   padding-top: 1rem;
+    //   padding-bottom: 1rem;
+    //   padding-left: 3rem;
+    //   padding-right: 15rem;
+    //   border-radius: 3rem;
+    //   border: 0;
+    //   font-weight: 400;
+    //   font-size: 1.8rem;
+    // }
+    // &_submit {
+    //   position: absolute;
+    //   right: 0rem;
+    //   width: 12rem;
+    //   padding-top: 1rem;
+    //   padding-bottom: 1rem;
+    //   padding-left: 3rem;
+    //   padding-right: 3rem;
+    //   border: 0;
+    //   border-radius: 3rem;
+    //   font-weight: 400;
+    //   font-size: 1.8rem;
+    //   background: linear-gradient(to right, $lightGreen, $lightBlue);
+    //   color: #FFFFFF;
+    //   &:hover {
+    //     cursor: pointer;
+    //   }
+    //   &:disabled {
+    //     cursor: default;
+    //   }
+    // }
+    // &_autoComplete {
+    //   position: relative;
+    //   z-index: 1;
+    //   padding-left: 1.6rem;
+    //   padding-right: 1.4rem;
+    //   padding-bottom: 1rem;
+    //   li {
+    //     padding-left: 1.5rem;
+    //     padding-top: 0.5rem;
+    //     padding-bottom: 0.5rem;
+    //     font-weight: 700;
+    //     font-size: 1.5rem;
+    //     background-color: #c2bdbd;
+    //     border-top: 1px solid black;
+    //     &:hover {
+    //       cursor: pointer;
+    //       background-color: #8d8b8b;
+    //     }
+    //     a {
+    //       padding-right: 1.4rem;
+    //       display: inline-block;
+    //       width: 100%;
+    //     }
+    //   }
+    // }
+    // &_autoCompleteHidden {
+    //   display: none;
+    // }
   }
   &__filmsSlider {
     padding-top: 3rem;
@@ -238,6 +265,7 @@
     padding-right: 2rem;
   }
   .homePage {
+
     &__filmsSlider {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
@@ -272,33 +300,36 @@
       padding-top: 2rem;
       h1 {
         font-size: 2.8rem;
-        line-height: 4.2rem;
+        line-height: 2.8rem;
       }
       h2 {
         font-size: 1.8rem;
       }
-      form {
-        margin-top: 3rem;
+      .MuiAutocomplete-root {
+        margin-top: 2.5rem;
       }
-      &_input {
-        font-size: 1.4rem;
-        padding-left: 1.7rem;
-        padding-right: 6.4rem;
-      }
-      &_submit {
-        width: 6rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        font-size: 1.4rem;
-        border-radius: 2rem;
-      }
-      &_autoComplete {
-        padding-left: 1.2rem;
-        padding-right: 1.2rem;
-        li {
-          padding-left: 0.5rem;
-        }
-      }
+      // form {
+      //   margin-top: 3rem;
+      // }
+      // &_input {
+      //   font-size: 1.4rem;
+      //   padding-left: 1.7rem;
+      //   padding-right: 6.4rem;
+      // }
+      // &_submit {
+      //   width: 6rem;
+      //   padding-left: 1rem;
+      //   padding-right: 1rem;
+      //   font-size: 1.4rem;
+      //   border-radius: 2rem;
+      // }
+      // &_autoComplete {
+      //   padding-left: 1.2rem;
+      //   padding-right: 1.2rem;
+      //   li {
+      //     padding-left: 0.5rem;
+      //   }
+      // }
     }
     &__filmsSlider {
       h2 {

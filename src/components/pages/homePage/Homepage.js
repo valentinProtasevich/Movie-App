@@ -17,6 +17,8 @@ import noImg from '../../../resources/img/noImg.jpg';
 import createDefaultImg from '../../../helpers/createDefaultImg';
 import useTranslateWord from '../../../hooks/useTranslateWord';
 import debounce from '../../../helpers/debounce';
+//import Autocomplete from '../../autocomplete/Autocomplete';
+import NewAutocomplete from '../../autocomplete/NewAutocomplete';
 
 import './homePage.scss';
 
@@ -100,8 +102,9 @@ const Homepage = () => {
               'Множество фильмов, сериалов и актеров. Исследуйте сейчас.',
               'Lots of movies, series and actors. Explore now.'
             )}
-          </h2>          
-          <form 
+          </h2>      
+          <NewAutocomplete/>    
+          {/* <form 
             onSubmit={(e) => onSubmit(e)} 
             onClick={(e) => {
               e.stopPropagation();
@@ -131,7 +134,7 @@ const Homepage = () => {
                 <Link to={`/movie/${item?.id}`}>{item?.title}</Link>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </section>
 
@@ -216,7 +219,7 @@ const Homepage = () => {
                     e.target.style.display = 'none';
                   }}
                 />
-                <div className='homePage__mostPopular_progress container'>
+                <div className='homePage__mostPopular_progress'>
                   <CircularProgressbar
                     value={item.vote_average * 10}
                     text={item.vote_average * 10 + '%'}
